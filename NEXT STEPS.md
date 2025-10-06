@@ -24,9 +24,14 @@ do it!, ngoài ra làm các bước sau:
 8. tôi thấy có 1 con chatbot khá là thú vị, có vẻ có liên quan : https://huggingface.co/mradermacher/Chatbot_VietNamese_Law_Qwen-GGUF . tìm xem có chat bot nào mới hơn và tốt hơn theo chuyên đề Law này hay không. tìm hiểu xem có thể dùng nó như thế nào với lmstudio có sẵn của máy tôi nhé. 
 9. nghiên cứu kỹ những cái mà bạn nói là chưa có bởi vì DOcling rất hoàn chỉnh. đọc lại cực kỳ kỹ lưỡng codebase cùng với documentation của IBM docling repo. nếu docling có các tính năng đó thì dùng của docling. 
 10. update work flow: trong promt mà tôi gửi cho AI phân tích rất có thể sẽ có 1 hay nhiều file office/pdf để nó thân tích nội dung file /ocr file , từ đó AI/LLM check xem có phù hợp vớ quy định hiện hành hay có lỗi hành văn, lỗi cấu trúc hay không và đề xuất cỉnh sửa. Docling có làm gì dc để hỗ trợ cho cái này được không? 
-11. chất lượng OCR/scan file pdf tiếng Việt nói chung chưa tốt, cần thêm module gì bổ sung cho docling không?
+11. chất lượng OCR/scan file pdf tiếng Việt nói chung chưa tốt, cần thêm module gì bổ sung cho docling không? check nhẹ các model embedd của lmstudio đã tải về xem chúng có giúp ích gì không nhé. 
 
 A) Chạy ngay với CPU (3-4 giờ, chạy qua đêm OK)
 B) Cài PyTorch GPU trước (download 2 GB, sau đó 1 giờ processing)
 
 làm B, nếu không khả thi thì làm A. 
+
+12. xử lý lỗi sau :
+D:\Work\Coding\QSM\python\venv\Lib\site-packages\torch\utils\data\dataloader.py:666: UserWarning: 'pin_memory' argument is set as true but no accelerator is found, then device pinned memory won't be used.
+  warnings.warn(warn_msg)
+13. ngoài pdf còn phải rag cả các file office format phổ thông nữa nhé. 
