@@ -6,7 +6,7 @@ import { useForm } from 'react-hook-form';
 import { z } from 'zod';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { Input } from '@/components/ui/input';
-import { Upload, Folder, AlertTriangle, FileText, Check } from 'lucide-react';
+import { Upload, Folder, AlertTriangle, Check } from 'lucide-react';
 import { useToast } from '@/hooks/use-toast';
 import { DocumentList } from '@/components/DocumentList';
 import { Folder as FolderType } from '@/hooks/useDocuments';
@@ -174,8 +174,8 @@ export const DocumentManagement: React.FC<DocumentManagementProps> = ({
       
       if (!includeSubfolders) {
         // Only include files from root folder (no '/' in webkitRelativePath after folder name)
-        const firstFile = allFiles[0] as any;
-        const rootFolderName = firstFile.webkitRelativePath?.split('/')[0] || '';
+        // const firstFile = allFiles[0] as any;
+        // const rootFolderName = firstFile.webkitRelativePath?.split('/')[0] || '';
         
         filesToProcess = filesToProcess.filter((file: any) => {
           const relativePath = file.webkitRelativePath || file.name;
@@ -322,6 +322,7 @@ export const DocumentManagement: React.FC<DocumentManagementProps> = ({
                 <FormField
                   control={uploadForm.control}
                   name="file"
+                  // @ts-ignore - React Hook Form type issue
                   render={({ field: { onChange, value, ...rest } }) => (
                     <FormItem>
                       <FormLabel>Chọn tệp tin (có thể chọn nhiều)</FormLabel>
@@ -363,6 +364,7 @@ export const DocumentManagement: React.FC<DocumentManagementProps> = ({
                 <FormField
                   control={uploadForm.control}
                   name="folderId"
+                  // @ts-ignore - React Hook Form type issue
                   render={({ field }) => (
                     <FormItem>
                       <FormLabel>Thư mục</FormLabel>

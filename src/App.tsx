@@ -10,7 +10,7 @@ import useAiModel from './hooks/useAiModel';
 function App() {
   // Documents and folders
   const {
-    documents,
+    // documents,
     folders,
     selectedFolderId,
     setSelectedFolderId,
@@ -81,7 +81,7 @@ function App() {
               deleteDocument={deleteDocument}
               getFolderPath={getFolderPath}
               folders={folders}
-              embeddingPipeline={aiModelHook.embeddingPipeline}
+              // embeddingPipeline={aiModelHook.embeddingPipeline}
             />
           </div>
         </main>

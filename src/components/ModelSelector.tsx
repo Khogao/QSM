@@ -26,7 +26,7 @@ export const ModelSelector: React.FC<ModelSelectorProps> = ({
   useAiModel: aiModelHook
 }) => {
   const { 
-    models, 
+    // models, 
     embeddingModels,
     getModelInfo, 
     isLoading, 

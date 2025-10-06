@@ -31,7 +31,7 @@ try {
 // Configure Transformers.js for sandbox environment - using minimal settings
 env.useBrowserCache = false; // Disable browser cache as it may not work in sandbox
 env.allowLocalModels = false; // Disable local models as they may not be accessible
-env.cacheDir = undefined; // Don't specify cache dir as it may not be writable
+(env as any).cacheDir = undefined; // Don't specify cache dir as it may not be writable
 
 // Disable ONNX optimizations that might not work in the sandbox
 if (env.backends && env.backends.onnx && env.backends.onnx.wasm) {
@@ -171,7 +171,7 @@ export const useAiModel = (
   const { toast } = useToast();
   const [lastError, setLastError] = useState<string | null>(null);
   const [isModelLoaded, setIsModelLoaded] = useState<boolean>(false);
-  const [loadAttempts, setLoadAttempts] = useState<number>(0);
+  const [_loadAttempts, setLoadAttempts] = useState<number>(0);
   const [diagnosticLogs, setDiagnosticLogs] = useState<string[]>([]);
 
   // Helper function to get model info by ID
@@ -419,7 +419,7 @@ export const useAiModel = (
       try {
         // Create a mock pipeline that returns random embeddings
         const mockPipeline = {
-          __call: async (text: string, options: any) => {
+          __call: async (text: string, _options: any) => {
             logDiagnostic('Using mock embedding pipeline');
             
             // Create deterministic "mock" embeddings based on text content
@@ -607,7 +607,7 @@ export const useAiModel = (
       try {
         // Create a deterministic mock pipeline that gives consistent results for the same input
         const mockPipeline = {
-          __call: async (text: string, options: any) => {
+          __call: async (text: string, _options: any) => {
             logDiagnostic('Using MOCK embedding pipeline for input: ' + (typeof text === 'string' ? text.substring(0, 20) + '...' : 'non-string'), 'warning');
             
             // Create deterministic "mock" embeddings based on text content
