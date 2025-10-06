@@ -1,0 +1,31 @@
+[2025-10-06T12:03:35.897399] 📂 Scanning D:\Work\Coding\archi-query-master\Documents...
+[2025-10-06T12:03:35.938916] 📊 Found 383 documents
+[2025-10-06T12:03:35.938916]   .pdf: 303 files
+[2025-10-06T12:03:35.939916]   .pptx: 6 files
+[2025-10-06T12:03:35.939916]   .doc: 8 files
+[2025-10-06T12:03:35.939916]   .xlsx: 41 files
+[2025-10-06T12:03:35.939916]   .xls: 6 files
+[2025-10-06T12:03:35.939916]   .docx: 19 files
+[2025-10-06T12:03:35.940916]   Sampled 79 .pdf files
+[2025-10-06T12:03:35.940916]   Sampled 1 .pptx files
+[2025-10-06T12:03:35.940916]   Sampled 2 .doc files
+[2025-10-06T12:03:35.940916]   Sampled 10 .xlsx files
+[2025-10-06T12:03:35.941916]   Sampled 1 .xls files
+[2025-10-06T12:03:35.941916]   Sampled 4 .docx files
+[2025-10-06T12:03:35.942916] ✅ Selected 100 files for testing
+
+[2025-10-06T12:03:35.942916] 🚀 Starting batch processing...
+
+[2025-10-06T12:03:35.943916] [1/100] Processing: QH-05-14-SDD-Model.pdf
+[2025-10-06T12:04:17.197617]   ✅ Success: 0 words, 1 pages, 0 tables
+[2025-10-06T12:04:17.198617]   ⏱️  Time: 41.21s
+
+[2025-10-06T12:04:17.204617] [2/100] Processing: Up Date BG KhÃ¡i ToÃ¡n_190912_LECADE_EVNH_BAO GIA KHAI TOAN(2) - Copy.xlsx
+[2025-10-06T12:04:26.217392]   ✅ Success: 3122 words, 2 pages, 24 tables
+[2025-10-06T12:04:26.217392]   ⏱️  Time: 8.99s
+
+[2025-10-06T12:04:26.218393] [3/100] Processing: BAO CAO KET QUA KHAO SAT DIA CHAT_ATV.pdf
+[2025-10-06T12:06:33.852564]   ⏱️  Time: 127.60s
+
+[2025-10-06T12:06:33.852564] 
+⚠️  Test interrupted by user

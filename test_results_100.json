@@ -1,0 +1,1905 @@
+{
+  "startTime": "2025-10-06T10:21:38.995679",
+  "testFolder": "D:\\Work\\Coding\\archi-query-master\\Documents",
+  "targetCount": 100,
+  "totalFiles": 100,
+  "processedFiles": 15,
+  "failedFiles": 85,
+  "totalProcessingTime": 40.32732963562012,
+  "avgProcessingTime": 0.4032732963562012,
+  "files": [
+    {
+      "index": 1,
+      "name": "VNG15 & many more.pdf",
+      "path": "D:\\Work\\Coding\\archi-query-master\\Documents\\New folder\\VNG15 & many more.pdf",
+      "size": 1084009,
+      "ext": ".pdf",
+      "hash": "84e2d291417ecb53265f7866439577c1a5eadc404cab854fc1fa770b3bf2ca62",
+      "success": false,
+      "processingTime": 0.008999824523925781,
+      "chunks": 0,
+      "wordCount": 0,
+      "pageCount": 0,
+      "tableCount": 0,
+      "error": "'PdfPipelineOptions' object has no attribute 'backend'"
+    },
+    {
+      "index": 2,
+      "name": "Fraser residence Hanoi- Calculations - Copy.pdf",
+      "path": "D:\\Work\\Coding\\archi-query-master\\Documents\\New folder\\Fraser residence Hanoi- Calculations - Copy.pdf",
+      "size": 40680,
+      "ext": ".pdf",
+      "hash": "2d499136418fe46f02c8de40d769daa8059720eaeb5b3cba63994d853aa52435",
+      "success": false,
+      "processingTime": 0.008000850677490234,
+      "chunks": 0,
+      "wordCount": 0,
+      "pageCount": 0,
+      "tableCount": 0,
+      "error": "'PdfPipelineOptions' object has no attribute 'backend'"
+    },
+    {
+      "index": 3,
+      "name": "20190325 677LVV programme - Phi review (1) - Copy.xls",
+      "path": "D:\\Work\\Coding\\archi-query-master\\Documents\\New folder\\20190325 677LVV programme - Phi review (1) - Copy.xls",
+      "size": 1595904,
+      "ext": ".xls",
+      "hash": "826b5f927ec5ba51855af5a123bc799b440e9a8e53eac3c6c4173acb2f27a85e",
+      "success": false,
+      "processingTime": 0.009001016616821289,
+      "chunks": 0,
+      "wordCount": 0,
+      "pageCount": 0,
+      "tableCount": 0,
+      "error": "File format not allowed: 20190325 677LVV programme - Phi review (1) - Copy.xls"
+    },
+    {
+      "index": 4,
+      "name": "TKYT KDC VEN SONG NHON DUC - 2023.02.03-PA2.pdf",
+      "path": "D:\\Work\\Coding\\archi-query-master\\Documents\\New folder\\TKYT KDC VEN SONG NHON DUC - 2023.02.03-PA2.pdf",
+      "size": 3595217,
+      "ext": ".pdf",
+      "hash": "72cb4bfece9301609f2ba9ccd5c70421ed9432750eeecd400c61c5e89a26e3fa",
+      "success": false,
+      "processingTime": 0.010001420974731445,
+      "chunks": 0,
+      "wordCount": 0,
+      "pageCount": 0,
+      "tableCount": 0,
+      "error": "'PdfPipelineOptions' object has no attribute 'backend'"
+    },
+    {
+      "index": 5,
+      "name": "Baogia_TVXD-QH_Nhon Duc-Nha Be.pdf",
+      "path": "D:\\Work\\Coding\\archi-query-master\\Documents\\New folder\\Baogia_TVXD-QH_Nhon Duc-Nha Be.pdf",
+      "size": 226328,
+      "ext": ".pdf",
+      "hash": "54797ab29df85f3200becfe7776fd2799f15e80d1b1a03f296e683f1e1f23852",
+      "success": false,
+      "processingTime": 0.007508993148803711,
+      "chunks": 0,
+      "wordCount": 0,
+      "pageCount": 0,
+      "tableCount": 0,
+      "error": "'PdfPipelineOptions' object has no attribute 'backend'"
+    },
+    {
+      "index": 6,
+      "name": "N&H house moodboard 2.pdf",
+      "path": "D:\\Work\\Coding\\archi-query-master\\Documents\\New folder\\N&H house moodboard 2.pdf",
+      "size": 8296896,
+      "ext": ".pdf",
+      "hash": "8f409936d423b170f1b8d0fbd44a00924b311036322bb390b7da2629632871c7",
+      "success": false,
+      "processingTime": 0.010514259338378906,
+      "chunks": 0,
+      "wordCount": 0,
+      "pageCount": 0,
+      "tableCount": 0,
+      "error": "'PdfPipelineOptions' object has no attribute 'backend'"
+    },
+    {
+      "index": 7,
+      "name": "230419_TRL_4295.SKHDT-KTDN_Xin y kien BTNMT ve dieu chinh CTDT.pdf",
+      "path": "D:\\Work\\Coding\\archi-query-master\\Documents\\New folder\\Legals\\230419_TRL_4295.SKHDT-KTDN_Xin y kien BTNMT ve dieu chinh CTDT.pdf",
+      "size": 3252626,
+      "ext": ".pdf",
+      "hash": "c937abc166923ee4b64b232e788540b2c548a7003d136827b2c23c14704f7264",
+      "success": false,
+      "processingTime": 0.006998777389526367,
+      "chunks": 0,
+      "wordCount": 0,
+      "pageCount": 0,
+      "tableCount": 0,
+      "error": "'PdfPipelineOptions' object has no attribute 'backend'"
+    },
+    {
+      "index": 8,
+      "name": "20190328_PDF PATHWAY Q9.pdf",
+      "path": "D:\\Work\\Coding\\archi-query-master\\Documents\\New folder\\20190328_PDF PATHWAY Q9.pdf",
+      "size": 16496474,
+      "ext": ".pdf",
+      "hash": "785335af7c809f62d2da95ee80c0f69b2a41b0fc073bf703d51837d23d2943c6",
+      "success": false,
+      "processingTime": 0.013001203536987305,
+      "chunks": 0,
+      "wordCount": 0,
+      "pageCount": 0,
+      "tableCount": 0,
+      "error": "'PdfPipelineOptions' object has no attribute 'backend'"
+    },
+    {
+      "index": 9,
+      "name": "Sơ đồ - NQ 98.pdf",
+      "path": "D:\\Work\\Coding\\archi-query-master\\Documents\\New folder\\Legals\\Sơ đồ - NQ 98.pdf",
+      "size": 642764,
+      "ext": ".pdf",
+      "hash": "07304945260adf893bfe822490402d02a4bae9a740dc35c2383b878dd5a3a0d4",
+      "success": false,
+      "processingTime": 0.008575201034545898,
+      "chunks": 0,
+      "wordCount": 0,
+      "pageCount": 0,
+      "tableCount": 0,
+      "error": "'PdfPipelineOptions' object has no attribute 'backend'"
+    },
+    {
+      "index": 10,
+      "name": "10072019_253-43 TRAN XUAN SOAN P TAN KIENG Q7 L507.pdf",
+      "path": "D:\\Work\\Coding\\archi-query-master\\Documents\\New folder\\10072019_253-43 TRAN XUAN SOAN P TAN KIENG Q7 L507.pdf",
+      "size": 1328866,
+      "ext": ".pdf",
+      "hash": "052ea33663a1918732928b56fa3f7e932ecdf9ce819822510c88edd59add6624",
+      "success": false,
+      "processingTime": 0.008510112762451172,
+      "chunks": 0,
+      "wordCount": 0,
+      "pageCount": 0,
+      "tableCount": 0,
+      "error": "'PdfPipelineOptions' object has no attribute 'backend'"
+    },
+    {
+      "index": 11,
+      "name": "Sổ tay đầu tư của Sở KHĐT - Copy.pdf",
+      "path": "D:\\Work\\Coding\\archi-query-master\\Documents\\New folder\\Sổ tay đầu tư của Sở KHĐT - Copy.pdf",
+      "size": 1585223,
+      "ext": ".pdf",
+      "hash": "ec499d6967a2ae53d798af9e8efd5dffd6c706b7a32e351103fc97083af3cb76",
+      "success": false,
+      "processingTime": 0.010515928268432617,
+      "chunks": 0,
+      "wordCount": 0,
+      "pageCount": 0,
+      "tableCount": 0,
+      "error": "'PdfPipelineOptions' object has no attribute 'backend'"
+    },
+    {
+      "index": 12,
+      "name": "1729395313-68-PCTT-VPTT ngay 20-10-2024.pdf",
+      "path": "D:\\Work\\Coding\\archi-query-master\\Documents\\New folder\\1729395313-68-PCTT-VPTT ngay 20-10-2024.pdf",
+      "size": 1288765,
+      "ext": ".pdf",
+      "hash": "53b33e6b0394c593721bf0c71b3ab9354bb3cff56824158409e1dc772fb92c84",
+      "success": false,
+      "processingTime": 0.008000612258911133,
+      "chunks": 0,
+      "wordCount": 0,
+      "pageCount": 0,
+      "tableCount": 0,
+      "error": "'PdfPipelineOptions' object has no attribute 'backend'"
+    },
+    {
+      "index": 13,
+      "name": "210730 8198.SXD-PTN&TTBDS Xin chủ trương đầu tư không cần phải có trong Danh mục của Kế hoạch phát triển nhà.pdf",
+      "path": "D:\\Work\\Coding\\archi-query-master\\Documents\\New folder\\Legals\\210730 8198.SXD-PTN&TTBDS Xin chủ trương đầu tư không cần phải có trong Danh mục của Kế hoạch phát triển nhà.pdf",
+      "size": 54478606,
+      "ext": ".pdf",
+      "hash": "7b57d2a9a73d82280d385fbb667797a4de804355bb22d4a254fb5bc0ce55c4bb",
+      "success": false,
+      "processingTime": 0.03153085708618164,
+      "chunks": 0,
+      "wordCount": 0,
+      "pageCount": 0,
+      "tableCount": 0,
+      "error": "'PdfPipelineOptions' object has no attribute 'backend'"
+    },
+    {
+      "index": 14,
+      "name": "Thua 159 - Copy.pdf",
+      "path": "D:\\Work\\Coding\\archi-query-master\\Documents\\New folder\\Thua 159 - Copy.pdf",
+      "size": 1592679,
+      "ext": ".pdf",
+      "hash": "31249146d0866ffc95340b3ab6b45e3f948cd25ebbb7decc4e81e7af71c63ba6",
+      "success": false,
+      "processingTime": 0.008998632431030273,
+      "chunks": 0,
+      "wordCount": 0,
+      "pageCount": 0,
+      "tableCount": 0,
+      "error": "'PdfPipelineOptions' object has no attribute 'backend'"
+    },
+    {
+      "index": 15,
+      "name": "CCF06052019 - Copy.pdf",
+      "path": "D:\\Work\\Coding\\archi-query-master\\Documents\\New folder\\Legals\\CCF06052019 - Copy.pdf",
+      "size": 743496,
+      "ext": ".pdf",
+      "hash": "55c3d50cc2d9a986723aecb4151d690d4f9746c4c29129aad162d81b911fb47c",
+      "success": false,
+      "processingTime": 0.009000539779663086,
+      "chunks": 0,
+      "wordCount": 0,
+      "pageCount": 0,
+      "tableCount": 0,
+      "error": "'PdfPipelineOptions' object has no attribute 'backend'"
+    },
+    {
+      "index": 16,
+      "name": "Cũ Hướng dẫn quận Tân Bình về Đăng ký kế hoạch sử dụng đất.pdf",
+      "path": "D:\\Work\\Coding\\archi-query-master\\Documents\\New folder\\Legals\\Cũ Hướng dẫn quận Tân Bình về Đăng ký kế hoạch sử dụng đất.pdf",
+      "size": 2918617,
+      "ext": ".pdf",
+      "hash": "9b37bc7102d0a01aa69f06609d3cebc68375c90619148a493e0d1fa8097fdbf9",
+      "success": false,
+      "processingTime": 0.014067888259887695,
+      "chunks": 0,
+      "wordCount": 0,
+      "pageCount": 0,
+      "tableCount": 0,
+      "error": "'PdfPipelineOptions' object has no attribute 'backend'"
+    },
+    {
+      "index": 17,
+      "name": "KAPPEL GARDEN1 - Copy.pdf",
+      "path": "D:\\Work\\Coding\\archi-query-master\\Documents\\New folder\\KAPPEL GARDEN1 - Copy.pdf",
+      "size": 80789,
+      "ext": ".pdf",
+      "hash": "d3b55e332431e52efd01fac8ab35c43ed8da81497ad0db22327144e7a30fefd0",
+      "success": false,
+      "processingTime": 0.008000373840332031,
+      "chunks": 0,
+      "wordCount": 0,
+      "pageCount": 0,
+      "tableCount": 0,
+      "error": "'PdfPipelineOptions' object has no attribute 'backend'"
+    },
+    {
+      "index": 18,
+      "name": "VNG LAYOUT TANG 2 - Copy.pdf",
+      "path": "D:\\Work\\Coding\\archi-query-master\\Documents\\New folder\\VNG LAYOUT TANG 2 - Copy.pdf",
+      "size": 273321,
+      "ext": ".pdf",
+      "hash": "f1dd9c36854d8fdff64a4f3554a5cc0d8259fe6604f964a642fd367948e4a770",
+      "success": false,
+      "processingTime": 0.008000612258911133,
+      "chunks": 0,
+      "wordCount": 0,
+      "pageCount": 0,
+      "tableCount": 0,
+      "error": "'PdfPipelineOptions' object has no attribute 'backend'"
+    },
+    {
+      "index": 19,
+      "name": "22HA - PA 1 - 2023.02.02.pdf",
+      "path": "D:\\Work\\Coding\\archi-query-master\\Documents\\New folder\\22HA - PA 1 - 2023.02.02.pdf",
+      "size": 889644,
+      "ext": ".pdf",
+      "hash": "d4680f42a1bf846df555aead895130dc44ca427bac5a8332128b6d304bf2a872",
+      "success": false,
+      "processingTime": 0.00800013542175293,
+      "chunks": 0,
+      "wordCount": 0,
+      "pageCount": 0,
+      "tableCount": 0,
+      "error": "'PdfPipelineOptions' object has no attribute 'backend'"
+    },
+    {
+      "index": 20,
+      "name": "MAIKA - ĐỀ XUẤT GẠCH ANH PHI - V1.0 - Copy.pdf",
+      "path": "D:\\Work\\Coding\\archi-query-master\\Documents\\New folder\\MAIKA - ĐỀ XUẤT GẠCH ANH PHI - V1.0 - Copy.pdf",
+      "size": 3006625,
+      "ext": ".pdf",
+      "hash": "79c2f80fd95c44acf98b3f9ffc5e5d8417eee39a6c993c9d1a5a47e4eec2244d",
+      "success": false,
+      "processingTime": 0.009004831314086914,
+      "chunks": 0,
+      "wordCount": 0,
+      "pageCount": 0,
+      "tableCount": 0,
+      "error": "'PdfPipelineOptions' object has no attribute 'backend'"
+    },
+    {
+      "index": 21,
+      "name": "20230830 - 4226-UBND-DT-Ve chap thuan cho nhan chuyen nhuong dat nong nghiep cua Cty Hung Long.pdf",
+      "path": "D:\\Work\\Coding\\archi-query-master\\Documents\\New folder\\Legals\\20230830 - 4226-UBND-DT-Ve chap thuan cho nhan chuyen nhuong dat nong nghiep cua Cty Hung Long.pdf",
+      "size": 367811,
+      "ext": ".pdf",
+      "hash": "85cca91acb76edfb22bf028b5b7fd023c296c1f537f42777a792ccafc438782a",
+      "success": false,
+      "processingTime": 0.008997678756713867,
+      "chunks": 0,
+      "wordCount": 0,
+      "pageCount": 0,
+      "tableCount": 0,
+      "error": "'PdfPipelineOptions' object has no attribute 'backend'"
+    },
+    {
+      "index": 22,
+      "name": "FILE_20190731_115440_181024 BROCHURE- TAGWALL 2018 (CHAU THOI)_35f14540f5daf3d79aef23bbc03f0b21 - Copy - Copy.pdf",
+      "path": "D:\\Work\\Coding\\archi-query-master\\Documents\\New folder\\FILE_20190731_115440_181024 BROCHURE- TAGWALL 2018 (CHAU THOI)_35f14540f5daf3d79aef23bbc03f0b21 - Copy - Copy.pdf",
+      "size": 27332230,
+      "ext": ".pdf",
+      "hash": "a6d7b820058bb2f3f2df1fa113368e5273ec6659d24e1106a7fd651e5a88d46d",
+      "success": false,
+      "processingTime": 0.015005111694335938,
+      "chunks": 0,
+      "wordCount": 0,
+      "pageCount": 0,
+      "tableCount": 0,
+      "error": "'PdfPipelineOptions' object has no attribute 'backend'"
+    },
+    {
+      "index": 23,
+      "name": "190812_IDEAconcept (1) - Copy.pdf",
+      "path": "D:\\Work\\Coding\\archi-query-master\\Documents\\New folder\\190812_IDEAconcept (1) - Copy.pdf",
+      "size": 34175417,
+      "ext": ".pdf",
+      "hash": "fcfdf9e60a9cba3324ebacd7d7a08fa1e18897a0d3e5367cb7cf98021b560ddc",
+      "success": false,
+      "processingTime": 0.01951456069946289,
+      "chunks": 0,
+      "wordCount": 0,
+      "pageCount": 0,
+      "tableCount": 0,
+      "error": "'PdfPipelineOptions' object has no attribute 'backend'"
+    },
+    {
+      "index": 24,
+      "name": "190812_IDEAconcept (1).pdf",
+      "path": "D:\\Work\\Coding\\archi-query-master\\Documents\\New folder\\190812_IDEAconcept (1).pdf",
+      "size": 34175417,
+      "ext": ".pdf",
+      "hash": "fcfdf9e60a9cba3324ebacd7d7a08fa1e18897a0d3e5367cb7cf98021b560ddc",
+      "success": false,
+      "processingTime": 0.017236709594726562,
+      "chunks": 0,
+      "wordCount": 0,
+      "pageCount": 0,
+      "tableCount": 0,
+      "error": "'PdfPipelineOptions' object has no attribute 'backend'"
+    },
+    {
+      "index": 25,
+      "name": "11. giay phep hung long  2022 - Copy.pdf",
+      "path": "D:\\Work\\Coding\\archi-query-master\\Documents\\New folder\\11. giay phep hung long  2022 - Copy.pdf",
+      "size": 2387991,
+      "ext": ".pdf",
+      "hash": "c98aee20d1c48be86efb65128d3510487374f098fef9fa781edc97da7d30dd39",
+      "success": false,
+      "processingTime": 0.009002923965454102,
+      "chunks": 0,
+      "wordCount": 0,
+      "pageCount": 0,
+      "tableCount": 0,
+      "error": "'PdfPipelineOptions' object has no attribute 'backend'"
+    },
+    {
+      "index": 26,
+      "name": "1_Mới.ĐIEULECONGTY_1TV - P HỒNG - ĐÀ NẴNG - CÔNG TY TNHH THIẾT KẾ PHI - CỘNG SỰ - Copy.pdf",
+      "path": "D:\\Work\\Coding\\archi-query-master\\Documents\\New folder\\1_Mới.ĐIEULECONGTY_1TV - P HỒNG - ĐÀ NẴNG - CÔNG TY TNHH THIẾT KẾ PHI - CỘNG SỰ - Copy.pdf",
+      "size": 424047,
+      "ext": ".pdf",
+      "hash": "9b2d7f8b4c04056aa27149c148878252941328cadc6ec53660743111d44db82c",
+      "success": false,
+      "processingTime": 0.00800180435180664,
+      "chunks": 0,
+      "wordCount": 0,
+      "pageCount": 0,
+      "tableCount": 0,
+      "error": "'PdfPipelineOptions' object has no attribute 'backend'"
+    },
+    {
+      "index": 27,
+      "name": "SG Pearl - hien trang.pdf",
+      "path": "D:\\Work\\Coding\\archi-query-master\\Documents\\New folder\\SG Pearl - hien trang.pdf",
+      "size": 19072521,
+      "ext": ".pdf",
+      "hash": "a3019363096ffe65f1f93ef2cfd13d1f7697c9e705f4aaaf939a77e84d15fe82",
+      "success": false,
+      "processingTime": 0.013083457946777344,
+      "chunks": 0,
+      "wordCount": 0,
+      "pageCount": 0,
+      "tableCount": 0,
+      "error": "'PdfPipelineOptions' object has no attribute 'backend'"
+    },
+    {
+      "index": 28,
+      "name": "20190130-PP1 - Copy.pdf",
+      "path": "D:\\Work\\Coding\\archi-query-master\\Documents\\New folder\\20190130-PP1 - Copy.pdf",
+      "size": 2516819,
+      "ext": ".pdf",
+      "hash": "edb571322adc324d8ce677a1f0d74416cbd41aebf4c4004e314c4144ef7ba362",
+      "success": false,
+      "processingTime": 0.009000778198242188,
+      "chunks": 0,
+      "wordCount": 0,
+      "pageCount": 0,
+      "tableCount": 0,
+      "error": "'PdfPipelineOptions' object has no attribute 'backend'"
+    },
+    {
+      "index": 29,
+      "name": "PHAN KIEN TRUC - Copy.pdf",
+      "path": "D:\\Work\\Coding\\archi-query-master\\Documents\\New folder\\PHAN KIEN TRUC - Copy.pdf",
+      "size": 9956293,
+      "ext": ".pdf",
+      "hash": "53036bf4f13f8ca2e7cd984463c1047a921c6f4bbf6bba7aacddf018813b4359",
+      "success": false,
+      "processingTime": 0.010519742965698242,
+      "chunks": 0,
+      "wordCount": 0,
+      "pageCount": 0,
+      "tableCount": 0,
+      "error": "'PdfPipelineOptions' object has no attribute 'backend'"
+    },
+    {
+      "index": 30,
+      "name": "1656461991627383.pdf",
+      "path": "D:\\Work\\Coding\\archi-query-master\\Documents\\New folder\\1656461991627383.pdf",
+      "size": 422290,
+      "ext": ".pdf",
+      "hash": "d1b3ee5a1c28bbbb3fc73cea18048205d4755afedb1a2b1dd4b1df042d3d729d",
+      "success": false,
+      "processingTime": 0.00800013542175293,
+      "chunks": 0,
+      "wordCount": 0,
+      "pageCount": 0,
+      "tableCount": 0,
+      "error": "'PdfPipelineOptions' object has no attribute 'backend'"
+    },
+    {
+      "index": 31,
+      "name": "101 things i learnded in arch school - Copy.pdf",
+      "path": "D:\\Work\\Coding\\archi-query-master\\Documents\\New folder\\101 things i learnded in arch school - Copy.pdf",
+      "size": 2865623,
+      "ext": ".pdf",
+      "hash": "b2f1da74b0b8c8c1ddf34c4f42506912d1834abb92c35f3caf32004add3f4463",
+      "success": false,
+      "processingTime": 0.008513689041137695,
+      "chunks": 0,
+      "wordCount": 0,
+      "pageCount": 0,
+      "tableCount": 0,
+      "error": "'PdfPipelineOptions' object has no attribute 'backend'"
+    },
+    {
+      "index": 32,
+      "name": "Hợp Đồng Thiết Kế NHD - Copy.docx",
+      "path": "D:\\Work\\Coding\\archi-query-master\\Documents\\New folder\\Hợp Đồng Thiết Kế NHD - Copy.docx",
+      "size": 54108,
+      "ext": ".docx",
+      "hash": "ead0d1314e96172eeee486a59f79ffe37e16fb4220771d96adea7c3920dc1672",
+      "success": true,
+      "processingTime": 0.2206556797027588,
+      "chunks": 8,
+      "wordCount": 1761,
+      "pageCount": 0,
+      "tableCount": 0,
+      "error": null
+    },
+    {
+      "index": 33,
+      "name": "BAO CAO KET QUA KHAO SAT DIA CHAT_ATV.pdf",
+      "path": "D:\\Work\\Coding\\archi-query-master\\Documents\\New folder\\BAO CAO KET QUA KHAO SAT DIA CHAT_ATV.pdf",
+      "size": 3550825,
+      "ext": ".pdf",
+      "hash": "e5f790d49fa443bf698f0223a8ccb81a8a10f485dbac6a75f8bc4a25feac5a38",
+      "success": false,
+      "processingTime": 0.007999897003173828,
+      "chunks": 0,
+      "wordCount": 0,
+      "pageCount": 0,
+      "tableCount": 0,
+      "error": "'PdfPipelineOptions' object has no attribute 'backend'"
+    },
+    {
+      "index": 34,
+      "name": "VNG15 & many more - Copy.pdf",
+      "path": "D:\\Work\\Coding\\archi-query-master\\Documents\\New folder\\VNG15 & many more - Copy.pdf",
+      "size": 1084009,
+      "ext": ".pdf",
+      "hash": "84e2d291417ecb53265f7866439577c1a5eadc404cab854fc1fa770b3bf2ca62",
+      "success": false,
+      "processingTime": 0.008001327514648438,
+      "chunks": 0,
+      "wordCount": 0,
+      "pageCount": 0,
+      "tableCount": 0,
+      "error": "'PdfPipelineOptions' object has no attribute 'backend'"
+    },
+    {
+      "index": 35,
+      "name": "Quy dinh kèm QD số 51 ngay 31.3.2025 ve tieu chi tách DA doc lap.pdf",
+      "path": "D:\\Work\\Coding\\archi-query-master\\Documents\\New folder\\Legals\\Quy dinh kèm QD số 51 ngay 31.3.2025 ve tieu chi tách DA doc lap.pdf",
+      "size": 620640,
+      "ext": ".pdf",
+      "hash": "667d58ae429322ff18a089294db1b5a7214698661e8c28126d719c5f244494cf",
+      "success": false,
+      "processingTime": 0.008000850677490234,
+      "chunks": 0,
+      "wordCount": 0,
+      "pageCount": 0,
+      "tableCount": 0,
+      "error": "'PdfPipelineOptions' object has no attribute 'backend'"
+    },
+    {
+      "index": 36,
+      "name": "QD 3383 ngay 14.8.2023 cua UBTP ve uy quyen quyet dinh gia dat (1).pdf",
+      "path": "D:\\Work\\Coding\\archi-query-master\\Documents\\New folder\\Legals\\QD 3383 ngay 14.8.2023 cua UBTP ve uy quyen quyet dinh gia dat (1).pdf",
+      "size": 2427499,
+      "ext": ".pdf",
+      "hash": "fc27065dddb4c86bf2d3d7a0e1df60976de75f5962e00626928875ad46266548",
+      "success": false,
+      "processingTime": 0.00851297378540039,
+      "chunks": 0,
+      "wordCount": 0,
+      "pageCount": 0,
+      "tableCount": 0,
+      "error": "'PdfPipelineOptions' object has no attribute 'backend'"
+    },
+    {
+      "index": 37,
+      "name": "VIP Coating _Supply + Apply_05 April 2023.xlsx",
+      "path": "D:\\Work\\Coding\\archi-query-master\\Documents\\New folder\\VIP Coating _Supply + Apply_05 April 2023.xlsx",
+      "size": 684473,
+      "ext": ".xlsx",
+      "hash": "7d9781cc20aeced7aa19444af51d69690aa3c11087ff94cd5f0f697f6ed9d7fb",
+      "success": true,
+      "processingTime": 2.9145467281341553,
+      "chunks": 28,
+      "wordCount": 1873,
+      "pageCount": 2,
+      "tableCount": 2,
+      "error": null
+    },
+    {
+      "index": 38,
+      "name": "20230220 TB 96 ket luan cau PCT BUI XUAN CUONG ve thao go khoa khan vuong mac theo de xuat cua HOREA.pdf",
+      "path": "D:\\Work\\Coding\\archi-query-master\\Documents\\New folder\\Legals\\20230220 TB 96 ket luan cau PCT BUI XUAN CUONG ve thao go khoa khan vuong mac theo de xuat cua HOREA.pdf",
+      "size": 4738527,
+      "ext": ".pdf",
+      "hash": "45cf80d4e5ce8ace1442ef27079266b7799b1951f8b711a12bc489647806a8f1",
+      "success": false,
+      "processingTime": 0.00800633430480957,
+      "chunks": 0,
+      "wordCount": 0,
+      "pageCount": 0,
+      "tableCount": 0,
+      "error": "'PdfPipelineOptions' object has no attribute 'backend'"
+    },
+    {
+      "index": 39,
+      "name": "201930101-PP1 [Recovered].pdf",
+      "path": "D:\\Work\\Coding\\archi-query-master\\Documents\\New folder\\201930101-PP1 [Recovered].pdf",
+      "size": 5593465,
+      "ext": ".pdf",
+      "hash": "428f101ac5ea6da8c33bc889871bcec41a88e7dc37889db4812f21bfee805745",
+      "success": false,
+      "processingTime": 0.008511066436767578,
+      "chunks": 0,
+      "wordCount": 0,
+      "pageCount": 0,
+      "tableCount": 0,
+      "error": "'PdfPipelineOptions' object has no attribute 'backend'"
+    },
+    {
+      "index": 40,
+      "name": "20190513-DHouse.pdf",
+      "path": "D:\\Work\\Coding\\archi-query-master\\Documents\\New folder\\20190513-DHouse.pdf",
+      "size": 3973216,
+      "ext": ".pdf",
+      "hash": "ca23a9a7c61e81b5c2c506d050a96b44a4f5bab25fc9c36b898079ce7afe128f",
+      "success": false,
+      "processingTime": 0.006996870040893555,
+      "chunks": 0,
+      "wordCount": 0,
+      "pageCount": 0,
+      "tableCount": 0,
+      "error": "'PdfPipelineOptions' object has no attribute 'backend'"
+    },
+    {
+      "index": 41,
+      "name": "TKYT KDC VEN SONG NHON DUC - 2023.02.03-PA1.pdf",
+      "path": "D:\\Work\\Coding\\archi-query-master\\Documents\\New folder\\TKYT KDC VEN SONG NHON DUC - 2023.02.03-PA1.pdf",
+      "size": 3608308,
+      "ext": ".pdf",
+      "hash": "baf73669d0a8f87343566a36b3f46fa88696fd9a2c49f174f63f811bd7e8475f",
+      "success": false,
+      "processingTime": 0.009513139724731445,
+      "chunks": 0,
+      "wordCount": 0,
+      "pageCount": 0,
+      "tableCount": 0,
+      "error": "'PdfPipelineOptions' object has no attribute 'backend'"
+    },
+    {
+      "index": 42,
+      "name": "TKYT KDC VEN SONG NGUYEN BINH - 2023.02.21.pdf",
+      "path": "D:\\Work\\Coding\\archi-query-master\\Documents\\New folder\\TKYT KDC VEN SONG NGUYEN BINH - 2023.02.21.pdf",
+      "size": 4589798,
+      "ext": ".pdf",
+      "hash": "2cd56a4333721987732f993f7964a8097153075231bc08f6069816072cba5e99",
+      "success": false,
+      "processingTime": 0.010002851486206055,
+      "chunks": 0,
+      "wordCount": 0,
+      "pageCount": 0,
+      "tableCount": 0,
+      "error": "'PdfPipelineOptions' object has no attribute 'backend'"
+    },
+    {
+      "index": 43,
+      "name": "DIEN TICH TUONG XAY.xlsx",
+      "path": "D:\\Work\\Coding\\archi-query-master\\Documents\\New folder\\DIEN TICH TUONG XAY.xlsx",
+      "size": 35601,
+      "ext": ".xlsx",
+      "hash": "c9193a0d9aeed4946b3fdc33f9ec8a50ecc7add89d548f6e2116699fd42cbaa0",
+      "success": true,
+      "processingTime": 0.289684534072876,
+      "chunks": 33,
+      "wordCount": 4935,
+      "pageCount": 7,
+      "tableCount": 94,
+      "error": null
+    },
+    {
+      "index": 44,
+      "name": "Cot vach tang 6 den tang 26 - Copy.pdf",
+      "path": "D:\\Work\\Coding\\archi-query-master\\Documents\\New folder\\Cot vach tang 6 den tang 26 - Copy.pdf",
+      "size": 3794824,
+      "ext": ".pdf",
+      "hash": "6a858b1cd7d847654a672b5082c0cef099c2490d63578eed02f148426e5240a2",
+      "success": false,
+      "processingTime": 0.012001991271972656,
+      "chunks": 0,
+      "wordCount": 0,
+      "pageCount": 0,
+      "tableCount": 0,
+      "error": "'PdfPipelineOptions' object has no attribute 'backend'"
+    },
+    {
+      "index": 45,
+      "name": "230703_Concept_V4 - Copy.pdf",
+      "path": "D:\\Work\\Coding\\archi-query-master\\Documents\\New folder\\230703_Concept_V4 - Copy.pdf",
+      "size": 5120000,
+      "ext": ".pdf",
+      "hash": "1406fb055eb104d44571f9bbfdf9deaaf06bcb95c6620222e124043d7d289499",
+      "success": false,
+      "processingTime": 0.008998870849609375,
+      "chunks": 0,
+      "wordCount": 0,
+      "pageCount": 0,
+      "tableCount": 0,
+      "error": "'PdfPipelineOptions' object has no attribute 'backend'"
+    },
+    {
+      "index": 46,
+      "name": "TSTK_CHUNG CU I.11.xlsx",
+      "path": "D:\\Work\\Coding\\archi-query-master\\Documents\\New folder\\TSTK_CHUNG CU I.11.xlsx",
+      "size": 23136,
+      "ext": ".xlsx",
+      "hash": "075766f701b1daf49dd07e66a6f8738b12969fbac61d26a20c5d3f0acb059fb1",
+      "success": true,
+      "processingTime": 0.06558537483215332,
+      "chunks": 13,
+      "wordCount": 1115,
+      "pageCount": 3,
+      "tableCount": 7,
+      "error": null
+    },
+    {
+      "index": 47,
+      "name": "2023.03.05_TMB_CHUNG CU-II.14.pdf",
+      "path": "D:\\Work\\Coding\\archi-query-master\\Documents\\New folder\\2023.03.05_TMB_CHUNG CU-II.14.pdf",
+      "size": 2787406,
+      "ext": ".pdf",
+      "hash": "042b6ec95841591f5078f807528bb4c277a7598d7890a8345df0fef60bb42c02",
+      "success": false,
+      "processingTime": 0.009003639221191406,
+      "chunks": 0,
+      "wordCount": 0,
+      "pageCount": 0,
+      "tableCount": 0,
+      "error": "'PdfPipelineOptions' object has no attribute 'backend'"
+    },
+    {
+      "index": 48,
+      "name": "2019-0729-BANG THONG KE - Public Areas.xlsx",
+      "path": "D:\\Work\\Coding\\archi-query-master\\Documents\\New folder\\2019-0729-BANG THONG KE - Public Areas.xlsx",
+      "size": 10233,
+      "ext": ".xlsx",
+      "hash": "3b760e2b2f0190457c35c878d800288ad4d98e6e1014d3e5ac9fc32937ff786e",
+      "success": true,
+      "processingTime": 0.017513036727905273,
+      "chunks": 0,
+      "wordCount": 88,
+      "pageCount": 3,
+      "tableCount": 1,
+      "error": null
+    },
+    {
+      "index": 49,
+      "name": "CafésBars_in_Vietnam.pdf",
+      "path": "D:\\Work\\Coding\\archi-query-master\\Documents\\New folder\\CafésBars_in_Vietnam.pdf",
+      "size": 197400,
+      "ext": ".pdf",
+      "hash": "3cbe1358f30fc06de921f0b123ec8449ee935d88f37f7ff2671b013b6e91d3cd",
+      "success": false,
+      "processingTime": 0.008244037628173828,
+      "chunks": 0,
+      "wordCount": 0,
+      "pageCount": 0,
+      "tableCount": 0,
+      "error": "'PdfPipelineOptions' object has no attribute 'backend'"
+    },
+    {
+      "index": 50,
+      "name": "20190513-DHouse - Copy.pdf",
+      "path": "D:\\Work\\Coding\\archi-query-master\\Documents\\New folder\\20190513-DHouse - Copy.pdf",
+      "size": 3973216,
+      "ext": ".pdf",
+      "hash": "ca23a9a7c61e81b5c2c506d050a96b44a4f5bab25fc9c36b898079ce7afe128f",
+      "success": false,
+      "processingTime": 0.00700068473815918,
+      "chunks": 0,
+      "wordCount": 0,
+      "pageCount": 0,
+      "tableCount": 0,
+      "error": "'PdfPipelineOptions' object has no attribute 'backend'"
+    },
+    {
+      "index": 51,
+      "name": "1166 TTCP nam 2022.pdf",
+      "path": "D:\\Work\\Coding\\archi-query-master\\Documents\\New folder\\Legals\\1166 TTCP nam 2022.pdf",
+      "size": 1783895,
+      "ext": ".pdf",
+      "hash": "b7f17cc21d8a0c8bc31fb74df24865c8b7dd70d186bf66ac8ac3363b30ac09b0",
+      "success": false,
+      "processingTime": 0.007002830505371094,
+      "chunks": 0,
+      "wordCount": 0,
+      "pageCount": 0,
+      "tableCount": 0,
+      "error": "'PdfPipelineOptions' object has no attribute 'backend'"
+    },
+    {
+      "index": 52,
+      "name": "30_05_2019_TechNewsThang6_Phuong-edit2.docx",
+      "path": "D:\\Work\\Coding\\archi-query-master\\Documents\\New folder\\30_05_2019_TechNewsThang6_Phuong-edit2.docx",
+      "size": 15479,
+      "ext": ".docx",
+      "hash": "be603d72071af1aa395853315f912b56561a2af163ca6d8b2c281c5101930d2d",
+      "success": true,
+      "processingTime": 0.0796051025390625,
+      "chunks": 5,
+      "wordCount": 883,
+      "pageCount": 0,
+      "tableCount": 1,
+      "error": null
+    },
+    {
+      "index": 53,
+      "name": "101 things i learnded in arch school.pdf",
+      "path": "D:\\Work\\Coding\\archi-query-master\\Documents\\New folder\\101 things i learnded in arch school.pdf",
+      "size": 2865623,
+      "ext": ".pdf",
+      "hash": "b2f1da74b0b8c8c1ddf34c4f42506912d1834abb92c35f3caf32004add3f4463",
+      "success": false,
+      "processingTime": 0.007001161575317383,
+      "chunks": 0,
+      "wordCount": 0,
+      "pageCount": 0,
+      "tableCount": 0,
+      "error": "'PdfPipelineOptions' object has no attribute 'backend'"
+    },
+    {
+      "index": 54,
+      "name": "ChatGPT Prompts Mastering (Christian Brown) (2023).pdf",
+      "path": "D:\\Work\\Coding\\archi-query-master\\Documents\\New folder\\ChatGPT Prompts Mastering (Christian Brown) (2023).pdf",
+      "size": 1004457,
+      "ext": ".pdf",
+      "hash": "a099317feea9e20303211e18c9efc37fd991a040398b46b0ff4963f41c57b142",
+      "success": false,
+      "processingTime": 0.008081436157226562,
+      "chunks": 0,
+      "wordCount": 0,
+      "pageCount": 0,
+      "tableCount": 0,
+      "error": "'PdfPipelineOptions' object has no attribute 'backend'"
+    },
+    {
+      "index": 55,
+      "name": "2023.08.09_TMB_CHUNG CU-II.14.pdf",
+      "path": "D:\\Work\\Coding\\archi-query-master\\Documents\\New folder\\2023.08.09_TMB_CHUNG CU-II.14.pdf",
+      "size": 3696701,
+      "ext": ".pdf",
+      "hash": "e6c554211410ad811f791471311cdec66cb5a295d6b4b45de600115674353e9d",
+      "success": false,
+      "processingTime": 0.007998943328857422,
+      "chunks": 0,
+      "wordCount": 0,
+      "pageCount": 0,
+      "tableCount": 0,
+      "error": "'PdfPipelineOptions' object has no attribute 'backend'"
+    },
+    {
+      "index": 56,
+      "name": "Hồ sơ đề nghị chấp thuận chủ trương đầu tư dự án- CTY HTC - Copy.pdf",
+      "path": "D:\\Work\\Coding\\archi-query-master\\Documents\\New folder\\Hồ sơ đề nghị chấp thuận chủ trương đầu tư dự án- CTY HTC - Copy.pdf",
+      "size": 24593586,
+      "ext": ".pdf",
+      "hash": "e645c00f65a72b5ac213912f7c480d5962b643fa1450094af044b6a5ab908f35",
+      "success": false,
+      "processingTime": 0.014516115188598633,
+      "chunks": 0,
+      "wordCount": 0,
+      "pageCount": 0,
+      "tableCount": 0,
+      "error": "'PdfPipelineOptions' object has no attribute 'backend'"
+    },
+    {
+      "index": 57,
+      "name": "Up Date BG KhÃ¡i ToÃ¡n_190912_LECADE_EVNH_BAO GIA KHAI TOAN(2).xlsx",
+      "path": "D:\\Work\\Coding\\archi-query-master\\Documents\\New folder\\Up Date BG KhÃ¡i ToÃ¡n_190912_LECADE_EVNH_BAO GIA KHAI TOAN(2).xlsx",
+      "size": 548721,
+      "ext": ".xlsx",
+      "hash": "6183900fc5d1fec6706542daea5f73d2425a096adac3bbe0e7dd4090532f0271",
+      "success": true,
+      "processingTime": 7.52235221862793,
+      "chunks": 28,
+      "wordCount": 3122,
+      "pageCount": 2,
+      "tableCount": 24,
+      "error": null
+    },
+    {
+      "index": 58,
+      "name": "JD - Giám Đốc Điều Hành (Architecture - Interior Design - Construction).pdf",
+      "path": "D:\\Work\\Coding\\archi-query-master\\Documents\\New folder\\JD - Giám Đốc Điều Hành (Architecture - Interior Design - Construction).pdf",
+      "size": 486423,
+      "ext": ".pdf",
+      "hash": "751c3974f8903fdcef24ffa995c584aee13663b74479ee27059d3ce1e1172d2a",
+      "success": false,
+      "processingTime": 0.008001327514648438,
+      "chunks": 0,
+      "wordCount": 0,
+      "pageCount": 0,
+      "tableCount": 0,
+      "error": "'PdfPipelineOptions' object has no attribute 'backend'"
+    },
+    {
+      "index": 59,
+      "name": "THONG KE HANG MUC VUNG TAU.xlsx",
+      "path": "D:\\Work\\Coding\\archi-query-master\\Documents\\New folder\\THONG KE HANG MUC VUNG TAU.xlsx",
+      "size": 12338,
+      "ext": ".xlsx",
+      "hash": "9181ed64e03135d9fb37941abdd51aea864b69fb6e0925be37ae8c6b6f340969",
+      "success": true,
+      "processingTime": 0.0395207405090332,
+      "chunks": 4,
+      "wordCount": 417,
+      "pageCount": 1,
+      "tableCount": 1,
+      "error": null
+    },
+    {
+      "index": 60,
+      "name": "NHD_PROFILE - Copy - Copy.pdf",
+      "path": "D:\\Work\\Coding\\archi-query-master\\Documents\\New folder\\NHD_PROFILE - Copy - Copy.pdf",
+      "size": 116780872,
+      "ext": ".pdf",
+      "hash": "f288b5ccbc38ed047d48ac64ac6a1f58c157efef1f4f82b8ce11c8a72c34c1ea",
+      "success": false,
+      "processingTime": 0.0365145206451416,
+      "chunks": 0,
+      "wordCount": 0,
+      "pageCount": 0,
+      "tableCount": 0,
+      "error": "'PdfPipelineOptions' object has no attribute 'backend'"
+    },
+    {
+      "index": 61,
+      "name": "QH-05-14-SDD-Model - Copy.pdf",
+      "path": "D:\\Work\\Coding\\archi-query-master\\Documents\\New folder\\QH-05-14-SDD-Model - Copy.pdf",
+      "size": 5188232,
+      "ext": ".pdf",
+      "hash": "a35bab54044e29bc244d9f3955a73947804acc3888c247efe7a758e7370e6007",
+      "success": false,
+      "processingTime": 0.008998632431030273,
+      "chunks": 0,
+      "wordCount": 0,
+      "pageCount": 0,
+      "tableCount": 0,
+      "error": "'PdfPipelineOptions' object has no attribute 'backend'"
+    },
+    {
+      "index": 62,
+      "name": "22.07.18 PAT BC KHU A - Copy - Copy.pdf",
+      "path": "D:\\Work\\Coding\\archi-query-master\\Documents\\New folder\\22.07.18 PAT BC KHU A - Copy - Copy.pdf",
+      "size": 19879080,
+      "ext": ".pdf",
+      "hash": "ea4c9de8835e87cbd6151167dd723a67af8b9979ad249a74e55f1be7c5135203",
+      "success": false,
+      "processingTime": 0.012002229690551758,
+      "chunks": 0,
+      "wordCount": 0,
+      "pageCount": 0,
+      "tableCount": 0,
+      "error": "'PdfPipelineOptions' object has no attribute 'backend'"
+    },
+    {
+      "index": 63,
+      "name": "XIN PHEP THUA 507  TO 10 -Model.pdf",
+      "path": "D:\\Work\\Coding\\archi-query-master\\Documents\\New folder\\XIN PHEP THUA 507  TO 10 -Model.pdf",
+      "size": 325979,
+      "ext": ".pdf",
+      "hash": "9f70286acd78a0c80d8ce433ce9c135e4231ecd7881d62e751e7433549dac63d",
+      "success": false,
+      "processingTime": 0.009002447128295898,
+      "chunks": 0,
+      "wordCount": 0,
+      "pageCount": 0,
+      "tableCount": 0,
+      "error": "'PdfPipelineOptions' object has no attribute 'backend'"
+    },
+    {
+      "index": 64,
+      "name": "THONG KE HANG MUC VUNG TAU FIX VER 3 - Copy.xlsx",
+      "path": "D:\\Work\\Coding\\archi-query-master\\Documents\\New folder\\THONG KE HANG MUC VUNG TAU FIX VER 3 - Copy.xlsx",
+      "size": 13514,
+      "ext": ".xlsx",
+      "hash": "99abb617aaa8baa2de0644fbc4a19f1e7d3c00524a2ed8216f6f271fdf099ba1",
+      "success": true,
+      "processingTime": 0.04350757598876953,
+      "chunks": 6,
+      "wordCount": 596,
+      "pageCount": 1,
+      "tableCount": 3,
+      "error": null
+    },
+    {
+      "index": 65,
+      "name": "2023.06.24_TMB_CHUNG CU-II.14.pdf",
+      "path": "D:\\Work\\Coding\\archi-query-master\\Documents\\New folder\\2023.06.24_TMB_CHUNG CU-II.14.pdf",
+      "size": 3640663,
+      "ext": ".pdf",
+      "hash": "6a2fbe07faeceb086e5fe4f3a3dc026c040d18085605f64de51cf5042a5d6b0b",
+      "success": false,
+      "processingTime": 0.008003473281860352,
+      "chunks": 0,
+      "wordCount": 0,
+      "pageCount": 0,
+      "tableCount": 0,
+      "error": "'PdfPipelineOptions' object has no attribute 'backend'"
+    },
+    {
+      "index": 66,
+      "name": "quyet%20dinh%20giao%20dat%20nam%202004%20cua%20UBNd%20tphcm.pdf",
+      "path": "D:\\Work\\Coding\\archi-query-master\\Documents\\New folder\\Legals\\quyet%20dinh%20giao%20dat%20nam%202004%20cua%20UBNd%20tphcm.pdf",
+      "size": 1506272,
+      "ext": ".pdf",
+      "hash": "d42456a0c5ef04800439e4a65666fadbc431a55e3a7cfe251552799ff8e4f24a",
+      "success": false,
+      "processingTime": 0.007001638412475586,
+      "chunks": 0,
+      "wordCount": 0,
+      "pageCount": 0,
+      "tableCount": 0,
+      "error": "'PdfPipelineOptions' object has no attribute 'backend'"
+    },
+    {
+      "index": 67,
+      "name": "SDD NGUYEN BINH 2023.02.23 - Copy.xlsx",
+      "path": "D:\\Work\\Coding\\archi-query-master\\Documents\\New folder\\SDD NGUYEN BINH 2023.02.23 - Copy.xlsx",
+      "size": 25992,
+      "ext": ".xlsx",
+      "hash": "2f7775b39315524260f53e1ff4f2bece34dd6d7b5d8a4267d71f2559accc4259",
+      "success": true,
+      "processingTime": 0.09102916717529297,
+      "chunks": 8,
+      "wordCount": 1040,
+      "pageCount": 4,
+      "tableCount": 20,
+      "error": null
+    },
+    {
+      "index": 68,
+      "name": "171030 313.STC-BVG Hướng dẫn lấy TKCS TKKT để tính nghĩa vụ tài chính.pdf",
+      "path": "D:\\Work\\Coding\\archi-query-master\\Documents\\New folder\\Legals\\171030 313.STC-BVG Hướng dẫn lấy TKCS TKKT để tính nghĩa vụ tài chính.pdf",
+      "size": 3177669,
+      "ext": ".pdf",
+      "hash": "8028ea25a0b34e24bbf43ab44d8db879d368a691793ffe5886ffb780700671cf",
+      "success": false,
+      "processingTime": 0.008042335510253906,
+      "chunks": 0,
+      "wordCount": 0,
+      "pageCount": 0,
+      "tableCount": 0,
+      "error": "'PdfPipelineOptions' object has no attribute 'backend'"
+    },
+    {
+      "index": 69,
+      "name": "QH-05-14-SDD-Model.pdf",
+      "path": "D:\\Work\\Coding\\archi-query-master\\Documents\\New folder\\QH-05-14-SDD-Model.pdf",
+      "size": 5188232,
+      "ext": ".pdf",
+      "hash": "a35bab54044e29bc244d9f3955a73947804acc3888c247efe7a758e7370e6007",
+      "success": false,
+      "processingTime": 0.0070040225982666016,
+      "chunks": 0,
+      "wordCount": 0,
+      "pageCount": 0,
+      "tableCount": 0,
+      "error": "'PdfPipelineOptions' object has no attribute 'backend'"
+    },
+    {
+      "index": 70,
+      "name": "THONG KE HANG MUC VUNG TAU FIX VER 4 - Copy.xlsx",
+      "path": "D:\\Work\\Coding\\archi-query-master\\Documents\\New folder\\THONG KE HANG MUC VUNG TAU FIX VER 4 - Copy.xlsx",
+      "size": 13541,
+      "ext": ".xlsx",
+      "hash": "7be4338281bdb114c508c441a0d26eba60ba62ef864eabaefbed5d97919e39d5",
+      "success": true,
+      "processingTime": 0.04301881790161133,
+      "chunks": 6,
+      "wordCount": 602,
+      "pageCount": 1,
+      "tableCount": 3,
+      "error": null
+    },
+    {
+      "index": 71,
+      "name": "230306 2946.SXD-PTN&TTBDS So Xay dung yeu cau Quan Huyen gui thong tin dieu chinh Ke hoach su dung dat.pdf",
+      "path": "D:\\Work\\Coding\\archi-query-master\\Documents\\New folder\\230306 2946.SXD-PTN&TTBDS So Xay dung yeu cau Quan Huyen gui thong tin dieu chinh Ke hoach su dung dat.pdf",
+      "size": 2382295,
+      "ext": ".pdf",
+      "hash": "7472348d53d3e014aeb898579bfb5145a009132d8d2bf853e46c71fa7326d741",
+      "success": false,
+      "processingTime": 0.007998466491699219,
+      "chunks": 0,
+      "wordCount": 0,
+      "pageCount": 0,
+      "tableCount": 0,
+      "error": "'PdfPipelineOptions' object has no attribute 'backend'"
+    },
+    {
+      "index": 72,
+      "name": "Baogia_TVXD-QH_Nhon Duc-Nha Be - Copy.pdf",
+      "path": "D:\\Work\\Coding\\archi-query-master\\Documents\\New folder\\Baogia_TVXD-QH_Nhon Duc-Nha Be - Copy.pdf",
+      "size": 226328,
+      "ext": ".pdf",
+      "hash": "54797ab29df85f3200becfe7776fd2799f15e80d1b1a03f296e683f1e1f23852",
+      "success": false,
+      "processingTime": 0.006999015808105469,
+      "chunks": 0,
+      "wordCount": 0,
+      "pageCount": 0,
+      "tableCount": 0,
+      "error": "'PdfPipelineOptions' object has no attribute 'backend'"
+    },
+    {
+      "index": 73,
+      "name": "11. giay phep hung long  2022 (1) - Copy.pdf",
+      "path": "D:\\Work\\Coding\\archi-query-master\\Documents\\New folder\\11. giay phep hung long  2022 (1) - Copy.pdf",
+      "size": 2387991,
+      "ext": ".pdf",
+      "hash": "c98aee20d1c48be86efb65128d3510487374f098fef9fa781edc97da7d30dd39",
+      "success": false,
+      "processingTime": 0.008003473281860352,
+      "chunks": 0,
+      "wordCount": 0,
+      "pageCount": 0,
+      "tableCount": 0,
+      "error": "'PdfPipelineOptions' object has no attribute 'backend'"
+    },
+    {
+      "index": 74,
+      "name": "LC_EVNH_To phan trang - Copy.docx",
+      "path": "D:\\Work\\Coding\\archi-query-master\\Documents\\New folder\\LC_EVNH_To phan trang - Copy.docx",
+      "size": 35058,
+      "ext": ".docx",
+      "hash": "664e80724fb1b1ec0d10464d65ceb2f7cae2ebcad8e733324bdf7cd6bd672173",
+      "success": true,
+      "processingTime": 0.030026674270629883,
+      "chunks": 0,
+      "wordCount": 37,
+      "pageCount": 0,
+      "tableCount": 0,
+      "error": null
+    },
+    {
+      "index": 75,
+      "name": "211031 Thuyết minh xin phe duyet du an dau tu du an KDC Ven Sông Nguyễn Bình.doc",
+      "path": "D:\\Work\\Coding\\archi-query-master\\Documents\\New folder\\211031 Thuyết minh xin phe duyet du an dau tu du an KDC Ven Sông Nguyễn Bình.doc",
+      "size": 3663872,
+      "ext": ".doc",
+      "hash": "2b14815a5af6985707fe07d1106869d2be29e195265c5ae2792ac3922ce8fb91",
+      "success": false,
+      "processingTime": 0.011002779006958008,
+      "chunks": 0,
+      "wordCount": 0,
+      "pageCount": 0,
+      "tableCount": 0,
+      "error": "File format not allowed: 211031 Thuyết minh xin phe duyet du an dau tu du an KDC Ven Sông Nguyễn Bình.doc"
+    },
+    {
+      "index": 76,
+      "name": "new doc 2018-11-16 08.42.28 - Copy.pdf",
+      "path": "D:\\Work\\Coding\\archi-query-master\\Documents\\New folder\\new doc 2018-11-16 08.42.28 - Copy.pdf",
+      "size": 1502375,
+      "ext": ".pdf",
+      "hash": "ee3a3575aedcce1bc9df103a8803613a2124663f9bcd11db6944174cba54c241",
+      "success": false,
+      "processingTime": 0.00851130485534668,
+      "chunks": 0,
+      "wordCount": 0,
+      "pageCount": 0,
+      "tableCount": 0,
+      "error": "'PdfPipelineOptions' object has no attribute 'backend'"
+    },
+    {
+      "index": 77,
+      "name": "201930101-PP1 [Recovered] - Copy.pdf",
+      "path": "D:\\Work\\Coding\\archi-query-master\\Documents\\New folder\\201930101-PP1 [Recovered] - Copy.pdf",
+      "size": 5593465,
+      "ext": ".pdf",
+      "hash": "428f101ac5ea6da8c33bc889871bcec41a88e7dc37889db4812f21bfee805745",
+      "success": false,
+      "processingTime": 0.008511543273925781,
+      "chunks": 0,
+      "wordCount": 0,
+      "pageCount": 0,
+      "tableCount": 0,
+      "error": "'PdfPipelineOptions' object has no attribute 'backend'"
+    },
+    {
+      "index": 78,
+      "name": "230525_GP-Masterplan - 1 ranh - Copy.pdf",
+      "path": "D:\\Work\\Coding\\archi-query-master\\Documents\\New folder\\230525_GP-Masterplan - 1 ranh - Copy.pdf",
+      "size": 1008055,
+      "ext": ".pdf",
+      "hash": "4268122ec99efa99da94f7ef9988799ca54b53c5f29f1026cf0c91f8418ac62d",
+      "success": false,
+      "processingTime": 0.006999969482421875,
+      "chunks": 0,
+      "wordCount": 0,
+      "pageCount": 0,
+      "tableCount": 0,
+      "error": "'PdfPipelineOptions' object has no attribute 'backend'"
+    },
+    {
+      "index": 79,
+      "name": "22.07.18 PAT BC KHU A.pdf",
+      "path": "D:\\Work\\Coding\\archi-query-master\\Documents\\New folder\\22.07.18 PAT BC KHU A.pdf",
+      "size": 19879080,
+      "ext": ".pdf",
+      "hash": "ea4c9de8835e87cbd6151167dd723a67af8b9979ad249a74e55f1be7c5135203",
+      "success": false,
+      "processingTime": 0.011002063751220703,
+      "chunks": 0,
+      "wordCount": 0,
+      "pageCount": 0,
+      "tableCount": 0,
+      "error": "'PdfPipelineOptions' object has no attribute 'backend'"
+    },
+    {
+      "index": 80,
+      "name": "Hội thảo về đăng ký thế chấp, xóa chấp tài sản đảm bảo Nghị định 99-2022 - Copy.pdf",
+      "path": "D:\\Work\\Coding\\archi-query-master\\Documents\\New folder\\Hội thảo về đăng ký thế chấp, xóa chấp tài sản đảm bảo Nghị định 99-2022 - Copy.pdf",
+      "size": 3235776,
+      "ext": ".pdf",
+      "hash": "559b9591d307e7d518ef9713afe953b4a4d0e35af4d903dda9ed030dfe8fdb70",
+      "success": false,
+      "processingTime": 0.0075092315673828125,
+      "chunks": 0,
+      "wordCount": 0,
+      "pageCount": 0,
+      "tableCount": 0,
+      "error": "'PdfPipelineOptions' object has no attribute 'backend'"
+    },
+    {
+      "index": 81,
+      "name": "tai_lieu_dinh_kem_32202312.pdf",
+      "path": "D:\\Work\\Coding\\archi-query-master\\Documents\\New folder\\Legals\\tai_lieu_dinh_kem_32202312.pdf",
+      "size": 23014946,
+      "ext": ".pdf",
+      "hash": "b9814791ba862bc3fc3e856bccb3b863dd558bd03c88728d961e25535b13ea00",
+      "success": false,
+      "processingTime": 0.01500701904296875,
+      "chunks": 0,
+      "wordCount": 0,
+      "pageCount": 0,
+      "tableCount": 0,
+      "error": "'PdfPipelineOptions' object has no attribute 'backend'"
+    },
+    {
+      "index": 82,
+      "name": "7A37v1.2(G52-7A371XH)(B350M MORTAR) - Copy.pdf",
+      "path": "D:\\Work\\Coding\\archi-query-master\\Documents\\New folder\\7A37v1.2(G52-7A371XH)(B350M MORTAR) - Copy.pdf",
+      "size": 7091369,
+      "ext": ".pdf",
+      "hash": "7bd9bfdd5aca67b36907784eb8687ca7b52b0c047e399a27fa899571859f7dc3",
+      "success": false,
+      "processingTime": 0.007511138916015625,
+      "chunks": 0,
+      "wordCount": 0,
+      "pageCount": 0,
+      "tableCount": 0,
+      "error": "'PdfPipelineOptions' object has no attribute 'backend'"
+    },
+    {
+      "index": 83,
+      "name": "HSTKTC.NHÀ A.TRUYỀN - Copy - Copy.pdf",
+      "path": "D:\\Work\\Coding\\archi-query-master\\Documents\\New folder\\HSTKTC.NHÀ A.TRUYỀN - Copy - Copy.pdf",
+      "size": 37275767,
+      "ext": ".pdf",
+      "hash": "bc7ac59a1c82dffbed33cf574003197a1e10fe146bd49225cc4d62997cd5b32f",
+      "success": false,
+      "processingTime": 0.017510175704956055,
+      "chunks": 0,
+      "wordCount": 0,
+      "pageCount": 0,
+      "tableCount": 0,
+      "error": "'PdfPipelineOptions' object has no attribute 'backend'"
+    },
+    {
+      "index": 84,
+      "name": "CafésBars_in_Vietnam (1).pdf",
+      "path": "D:\\Work\\Coding\\archi-query-master\\Documents\\New folder\\CafésBars_in_Vietnam (1).pdf",
+      "size": 197400,
+      "ext": ".pdf",
+      "hash": "3cbe1358f30fc06de921f0b123ec8449ee935d88f37f7ff2671b013b6e91d3cd",
+      "success": false,
+      "processingTime": 0.005999326705932617,
+      "chunks": 0,
+      "wordCount": 0,
+      "pageCount": 0,
+      "tableCount": 0,
+      "error": "'PdfPipelineOptions' object has no attribute 'backend'"
+    },
+    {
+      "index": 85,
+      "name": "NHD_PROFILE.pdf",
+      "path": "D:\\Work\\Coding\\archi-query-master\\Documents\\New folder\\NHD_PROFILE.pdf",
+      "size": 116780872,
+      "ext": ".pdf",
+      "hash": "f288b5ccbc38ed047d48ac64ac6a1f58c157efef1f4f82b8ce11c8a72c34c1ea",
+      "success": false,
+      "processingTime": 0.0380709171295166,
+      "chunks": 0,
+      "wordCount": 0,
+      "pageCount": 0,
+      "tableCount": 0,
+      "error": "'PdfPipelineOptions' object has no attribute 'backend'"
+    },
+    {
+      "index": 86,
+      "name": "CafésBars_in_Vietnam (1) - Copy.pdf",
+      "path": "D:\\Work\\Coding\\archi-query-master\\Documents\\New folder\\CafésBars_in_Vietnam (1) - Copy.pdf",
+      "size": 197400,
+      "ext": ".pdf",
+      "hash": "3cbe1358f30fc06de921f0b123ec8449ee935d88f37f7ff2671b013b6e91d3cd",
+      "success": false,
+      "processingTime": 0.00800323486328125,
+      "chunks": 0,
+      "wordCount": 0,
+      "pageCount": 0,
+      "tableCount": 0,
+      "error": "'PdfPipelineOptions' object has no attribute 'backend'"
+    },
+    {
+      "index": 87,
+      "name": "20230725102906HoSoKyThuatThuaDat1 - Copy.doc",
+      "path": "D:\\Work\\Coding\\archi-query-master\\Documents\\New folder\\20230725102906HoSoKyThuatThuaDat1 - Copy.doc",
+      "size": 1656320,
+      "ext": ".doc",
+      "hash": "dc7d204bde97e361296cb28a6aad51a96b934f20ce5d08ab870ec256dc596489",
+      "success": false,
+      "processingTime": 0.013008356094360352,
+      "chunks": 0,
+      "wordCount": 0,
+      "pageCount": 0,
+      "tableCount": 0,
+      "error": "'utf-8' codec can't decode byte 0xd0 in position 0: invalid continuation byte"
+    },
+    {
+      "index": 88,
+      "name": "MAIKA - FORM MAU DE XUAT GACH1 - V1.0 - Copy - Copy.pdf",
+      "path": "D:\\Work\\Coding\\archi-query-master\\Documents\\New folder\\MAIKA - FORM MAU DE XUAT GACH1 - V1.0 - Copy - Copy.pdf",
+      "size": 2375595,
+      "ext": ".pdf",
+      "hash": "6515d6e545b5df2bb98ac061bb1c6a8dc6a517210cd3b3e1346661b0396eaa18",
+      "success": false,
+      "processingTime": 0.008002758026123047,
+      "chunks": 0,
+      "wordCount": 0,
+      "pageCount": 0,
+      "tableCount": 0,
+      "error": "'PdfPipelineOptions' object has no attribute 'backend'"
+    },
+    {
+      "index": 89,
+      "name": "2023.08.09_TMB_CHUNG CU-II.14 - Copy.pdf",
+      "path": "D:\\Work\\Coding\\archi-query-master\\Documents\\New folder\\2023.08.09_TMB_CHUNG CU-II.14 - Copy.pdf",
+      "size": 3696701,
+      "ext": ".pdf",
+      "hash": "e6c554211410ad811f791471311cdec66cb5a295d6b4b45de600115674353e9d",
+      "success": false,
+      "processingTime": 0.009001970291137695,
+      "chunks": 0,
+      "wordCount": 0,
+      "pageCount": 0,
+      "tableCount": 0,
+      "error": "'PdfPipelineOptions' object has no attribute 'backend'"
+    },
+    {
+      "index": 90,
+      "name": "FILE_20190114_152645_scan0081_07f04a7008512d92acf1e46e61318a1a.pdf",
+      "path": "D:\\Work\\Coding\\archi-query-master\\Documents\\New folder\\FILE_20190114_152645_scan0081_07f04a7008512d92acf1e46e61318a1a.pdf",
+      "size": 3708798,
+      "ext": ".pdf",
+      "hash": "b3a5e6d2862c6f9f0c360b4854e9fdbad39501a19868bbe7a427872a2b7de4a6",
+      "success": false,
+      "processingTime": 0.008006811141967773,
+      "chunks": 0,
+      "wordCount": 0,
+      "pageCount": 0,
+      "tableCount": 0,
+      "error": "'PdfPipelineOptions' object has no attribute 'backend'"
+    },
+    {
+      "index": 91,
+      "name": "20250713221822936_SXD trả lời SNNMT (1).pdf",
+      "path": "D:\\Work\\Coding\\archi-query-master\\Documents\\New folder\\Legals\\20250713221822936_SXD trả lời SNNMT (1).pdf",
+      "size": 37120551,
+      "ext": ".pdf",
+      "hash": "0ad3d22774d5903152889389968e5454a0b4053c7c7f91a9960600c57aea497a",
+      "success": false,
+      "processingTime": 0.017004013061523438,
+      "chunks": 0,
+      "wordCount": 0,
+      "pageCount": 0,
+      "tableCount": 0,
+      "error": "'PdfPipelineOptions' object has no attribute 'backend'"
+    },
+    {
+      "index": 92,
+      "name": "190104 Presentation NHA LAP GHEP_Effective_Rev06.pptx",
+      "path": "D:\\Work\\Coding\\archi-query-master\\Documents\\New folder\\190104 Presentation NHA LAP GHEP_Effective_Rev06.pptx",
+      "size": 92504301,
+      "ext": ".pptx",
+      "hash": "206df529071ae45de6b9a6170244fb0cc951943fff9152525437f6356a8fcce0",
+      "success": true,
+      "processingTime": 15.33618426322937,
+      "chunks": 7,
+      "wordCount": 1479,
+      "pageCount": 31,
+      "tableCount": 1,
+      "error": null
+    },
+    {
+      "index": 93,
+      "name": "giấy phép NSG cap nhập mới nhất ngày 31..pdf",
+      "path": "D:\\Work\\Coding\\archi-query-master\\Documents\\New folder\\giấy phép NSG cap nhập mới nhất ngày 31..pdf",
+      "size": 3186578,
+      "ext": ".pdf",
+      "hash": "de83b9ed9a1fb5bc4818e8f9748866de3072362686ebdce0eede1c226d65df11",
+      "success": false,
+      "processingTime": 0.009322881698608398,
+      "chunks": 0,
+      "wordCount": 0,
+      "pageCount": 0,
+      "tableCount": 0,
+      "error": "'PdfPipelineOptions' object has no attribute 'backend'"
+    },
+    {
+      "index": 94,
+      "name": "NĐ 84_2024_ND-CP_phân cấp thẩm quyền quản lý cho HCM.pdf",
+      "path": "D:\\Work\\Coding\\archi-query-master\\Documents\\New folder\\Legals\\NĐ 84_2024_ND-CP_phân cấp thẩm quyền quản lý cho HCM.pdf",
+      "size": 4673967,
+      "ext": ".pdf",
+      "hash": "06c7a0b14865824299891ec029e089d8c47bf53590a2d50359832c6b23d0275a",
+      "success": false,
+      "processingTime": 0.00900578498840332,
+      "chunks": 0,
+      "wordCount": 0,
+      "pageCount": 0,
+      "tableCount": 0,
+      "error": "'PdfPipelineOptions' object has no attribute 'backend'"
+    },
+    {
+      "index": 95,
+      "name": "220622 4861.VP-ĐT Tháo gỡ do thay đổi thiết kế hầm so với quy hoạch.pdf",
+      "path": "D:\\Work\\Coding\\archi-query-master\\Documents\\New folder\\Legals\\220622 4861.VP-ĐT Tháo gỡ do thay đổi thiết kế hầm so với quy hoạch.pdf",
+      "size": 587975,
+      "ext": ".pdf",
+      "hash": "586cd98db5d7d8b52c58e0090fdf985bf3ff1191a2ea8d8d720e4323ef216207",
+      "success": false,
+      "processingTime": 0.008000850677490234,
+      "chunks": 0,
+      "wordCount": 0,
+      "pageCount": 0,
+      "tableCount": 0,
+      "error": "'PdfPipelineOptions' object has no attribute 'backend'"
+    },
+    {
+      "index": 96,
+      "name": "To trinh tham dinh tkcs-asian trails.docx",
+      "path": "D:\\Work\\Coding\\archi-query-master\\Documents\\New folder\\To trinh tham dinh tkcs-asian trails.docx",
+      "size": 18290,
+      "ext": ".docx",
+      "hash": "ed715a3067f133bb118ad203bb41cd853330d6a3c4243ed358bc07f47c4ab514",
+      "success": true,
+      "processingTime": 0.12454366683959961,
+      "chunks": 3,
+      "wordCount": 649,
+      "pageCount": 0,
+      "tableCount": 2,
+      "error": null
+    },
+    {
+      "index": 97,
+      "name": "TKYT KDC VEN SONG NGUYEN BINH - 2023.02.21 (1).pdf",
+      "path": "D:\\Work\\Coding\\archi-query-master\\Documents\\New folder\\TKYT KDC VEN SONG NGUYEN BINH - 2023.02.21 (1).pdf",
+      "size": 4589798,
+      "ext": ".pdf",
+      "hash": "2cd56a4333721987732f993f7964a8097153075231bc08f6069816072cba5e99",
+      "success": false,
+      "processingTime": 0.009000778198242188,
+      "chunks": 0,
+      "wordCount": 0,
+      "pageCount": 0,
+      "tableCount": 0,
+      "error": "'PdfPipelineOptions' object has no attribute 'backend'"
+    },
+    {
+      "index": 98,
+      "name": "THONG KE HANG MUC VUNG TAU - Copy.xlsx",
+      "path": "D:\\Work\\Coding\\archi-query-master\\Documents\\New folder\\THONG KE HANG MUC VUNG TAU - Copy.xlsx",
+      "size": 12338,
+      "ext": ".xlsx",
+      "hash": "9181ed64e03135d9fb37941abdd51aea864b69fb6e0925be37ae8c6b6f340969",
+      "success": true,
+      "processingTime": 0.036510467529296875,
+      "chunks": 4,
+      "wordCount": 417,
+      "pageCount": 1,
+      "tableCount": 1,
+      "error": null
+    },
+    {
+      "index": 99,
+      "name": "VP ATV - De cuong KSDC bo sung - Copy.pdf",
+      "path": "D:\\Work\\Coding\\archi-query-master\\Documents\\New folder\\VP ATV - De cuong KSDC bo sung - Copy.pdf",
+      "size": 294240,
+      "ext": ".pdf",
+      "hash": "b0c882db0e101c161a3e1895f1b3b9f145f1046c3903d7846d45b883a96b9732",
+      "success": false,
+      "processingTime": 0.007998943328857422,
+      "chunks": 0,
+      "wordCount": 0,
+      "pageCount": 0,
+      "tableCount": 0,
+      "error": "'PdfPipelineOptions' object has no attribute 'backend'"
+    },
+    {
+      "index": 100,
+      "name": "Quy hoạch phân khu, quy hoạch chung thành phố Cần Thơ.pdf",
+      "path": "D:\\Work\\Coding\\archi-query-master\\Documents\\New folder\\Legals\\Quy hoạch phân khu, quy hoạch chung thành phố Cần Thơ.pdf",
+      "size": 233816128,
+      "ext": ".pdf",
+      "hash": "5f8c90491ca9d22e8d66ecf1ed5be0f40beefe295596d3c00a0e8960066330dc",
+      "success": false,
+      "processingTime": 0.07253074645996094,
+      "chunks": 0,
+      "wordCount": 0,
+      "pageCount": 0,
+      "tableCount": 0,
+      "error": "'PdfPipelineOptions' object has no attribute 'backend'"
+    }
+  ],
+  "errors": [
+    {
+      "file": "VNG15 & many more.pdf",
+      "error": "'PdfPipelineOptions' object has no attribute 'backend'"
+    },
+    {
+      "file": "Fraser residence Hanoi- Calculations - Copy.pdf",
+      "error": "'PdfPipelineOptions' object has no attribute 'backend'"
+    },
+    {
+      "file": "20190325 677LVV programme - Phi review (1) - Copy.xls",
+      "error": "File format not allowed: 20190325 677LVV programme - Phi review (1) - Copy.xls"
+    },
+    {
+      "file": "TKYT KDC VEN SONG NHON DUC - 2023.02.03-PA2.pdf",
+      "error": "'PdfPipelineOptions' object has no attribute 'backend'"
+    },
+    {
+      "file": "Baogia_TVXD-QH_Nhon Duc-Nha Be.pdf",
+      "error": "'PdfPipelineOptions' object has no attribute 'backend'"
+    },
+    {
+      "file": "N&H house moodboard 2.pdf",
+      "error": "'PdfPipelineOptions' object has no attribute 'backend'"
+    },
+    {
+      "file": "230419_TRL_4295.SKHDT-KTDN_Xin y kien BTNMT ve dieu chinh CTDT.pdf",
+      "error": "'PdfPipelineOptions' object has no attribute 'backend'"
+    },
+    {
+      "file": "20190328_PDF PATHWAY Q9.pdf",
+      "error": "'PdfPipelineOptions' object has no attribute 'backend'"
+    },
+    {
+      "file": "Sơ đồ - NQ 98.pdf",
+      "error": "'PdfPipelineOptions' object has no attribute 'backend'"
+    },
+    {
+      "file": "10072019_253-43 TRAN XUAN SOAN P TAN KIENG Q7 L507.pdf",
+      "error": "'PdfPipelineOptions' object has no attribute 'backend'"
+    },
+    {
+      "file": "Sổ tay đầu tư của Sở KHĐT - Copy.pdf",
+      "error": "'PdfPipelineOptions' object has no attribute 'backend'"
+    },
+    {
+      "file": "1729395313-68-PCTT-VPTT ngay 20-10-2024.pdf",
+      "error": "'PdfPipelineOptions' object has no attribute 'backend'"
+    },
+    {
+      "file": "210730 8198.SXD-PTN&TTBDS Xin chủ trương đầu tư không cần phải có trong Danh mục của Kế hoạch phát triển nhà.pdf",
+      "error": "'PdfPipelineOptions' object has no attribute 'backend'"
+    },
+    {
+      "file": "Thua 159 - Copy.pdf",
+      "error": "'PdfPipelineOptions' object has no attribute 'backend'"
+    },
+    {
+      "file": "CCF06052019 - Copy.pdf",
+      "error": "'PdfPipelineOptions' object has no attribute 'backend'"
+    },
+    {
+      "file": "Cũ Hướng dẫn quận Tân Bình về Đăng ký kế hoạch sử dụng đất.pdf",
+      "error": "'PdfPipelineOptions' object has no attribute 'backend'"
+    },
+    {
+      "file": "KAPPEL GARDEN1 - Copy.pdf",
+      "error": "'PdfPipelineOptions' object has no attribute 'backend'"
+    },
+    {
+      "file": "VNG LAYOUT TANG 2 - Copy.pdf",
+      "error": "'PdfPipelineOptions' object has no attribute 'backend'"
+    },
+    {
+      "file": "22HA - PA 1 - 2023.02.02.pdf",
+      "error": "'PdfPipelineOptions' object has no attribute 'backend'"
+    },
+    {
+      "file": "MAIKA - ĐỀ XUẤT GẠCH ANH PHI - V1.0 - Copy.pdf",
+      "error": "'PdfPipelineOptions' object has no attribute 'backend'"
+    },
+    {
+      "file": "20230830 - 4226-UBND-DT-Ve chap thuan cho nhan chuyen nhuong dat nong nghiep cua Cty Hung Long.pdf",
+      "error": "'PdfPipelineOptions' object has no attribute 'backend'"
+    },
+    {
+      "file": "FILE_20190731_115440_181024 BROCHURE- TAGWALL 2018 (CHAU THOI)_35f14540f5daf3d79aef23bbc03f0b21 - Copy - Copy.pdf",
+      "error": "'PdfPipelineOptions' object has no attribute 'backend'"
+    },
+    {
+      "file": "190812_IDEAconcept (1) - Copy.pdf",
+      "error": "'PdfPipelineOptions' object has no attribute 'backend'"
+    },
+    {
+      "file": "190812_IDEAconcept (1).pdf",
+      "error": "'PdfPipelineOptions' object has no attribute 'backend'"
+    },
+    {
+      "file": "11. giay phep hung long  2022 - Copy.pdf",
+      "error": "'PdfPipelineOptions' object has no attribute 'backend'"
+    },
+    {
+      "file": "1_Mới.ĐIEULECONGTY_1TV - P HỒNG - ĐÀ NẴNG - CÔNG TY TNHH THIẾT KẾ PHI - CỘNG SỰ - Copy.pdf",
+      "error": "'PdfPipelineOptions' object has no attribute 'backend'"
+    },
+    {
+      "file": "SG Pearl - hien trang.pdf",
+      "error": "'PdfPipelineOptions' object has no attribute 'backend'"
+    },
+    {
+      "file": "20190130-PP1 - Copy.pdf",
+      "error": "'PdfPipelineOptions' object has no attribute 'backend'"
+    },
+    {
+      "file": "PHAN KIEN TRUC - Copy.pdf",
+      "error": "'PdfPipelineOptions' object has no attribute 'backend'"
+    },
+    {
+      "file": "1656461991627383.pdf",
+      "error": "'PdfPipelineOptions' object has no attribute 'backend'"
+    },
+    {
+      "file": "101 things i learnded in arch school - Copy.pdf",
+      "error": "'PdfPipelineOptions' object has no attribute 'backend'"
+    },
+    {
+      "file": "BAO CAO KET QUA KHAO SAT DIA CHAT_ATV.pdf",
+      "error": "'PdfPipelineOptions' object has no attribute 'backend'"
+    },
+    {
+      "file": "VNG15 & many more - Copy.pdf",
+      "error": "'PdfPipelineOptions' object has no attribute 'backend'"
+    },
+    {
+      "file": "Quy dinh kèm QD số 51 ngay 31.3.2025 ve tieu chi tách DA doc lap.pdf",
+      "error": "'PdfPipelineOptions' object has no attribute 'backend'"
+    },
+    {
+      "file": "QD 3383 ngay 14.8.2023 cua UBTP ve uy quyen quyet dinh gia dat (1).pdf",
+      "error": "'PdfPipelineOptions' object has no attribute 'backend'"
+    },
+    {
+      "file": "20230220 TB 96 ket luan cau PCT BUI XUAN CUONG ve thao go khoa khan vuong mac theo de xuat cua HOREA.pdf",
+      "error": "'PdfPipelineOptions' object has no attribute 'backend'"
+    },
+    {
+      "file": "201930101-PP1 [Recovered].pdf",
+      "error": "'PdfPipelineOptions' object has no attribute 'backend'"
+    },
+    {
+      "file": "20190513-DHouse.pdf",
+      "error": "'PdfPipelineOptions' object has no attribute 'backend'"
+    },
+    {
+      "file": "TKYT KDC VEN SONG NHON DUC - 2023.02.03-PA1.pdf",
+      "error": "'PdfPipelineOptions' object has no attribute 'backend'"
+    },
+    {
+      "file": "TKYT KDC VEN SONG NGUYEN BINH - 2023.02.21.pdf",
+      "error": "'PdfPipelineOptions' object has no attribute 'backend'"
+    },
+    {
+      "file": "Cot vach tang 6 den tang 26 - Copy.pdf",
+      "error": "'PdfPipelineOptions' object has no attribute 'backend'"
+    },
+    {
+      "file": "230703_Concept_V4 - Copy.pdf",
+      "error": "'PdfPipelineOptions' object has no attribute 'backend'"
+    },
+    {
+      "file": "2023.03.05_TMB_CHUNG CU-II.14.pdf",
+      "error": "'PdfPipelineOptions' object has no attribute 'backend'"
+    },
+    {
+      "file": "CafésBars_in_Vietnam.pdf",
+      "error": "'PdfPipelineOptions' object has no attribute 'backend'"
+    },
+    {
+      "file": "20190513-DHouse - Copy.pdf",
+      "error": "'PdfPipelineOptions' object has no attribute 'backend'"
+    },
+    {
+      "file": "1166 TTCP nam 2022.pdf",
+      "error": "'PdfPipelineOptions' object has no attribute 'backend'"
+    },
+    {
+      "file": "101 things i learnded in arch school.pdf",
+      "error": "'PdfPipelineOptions' object has no attribute 'backend'"
+    },
+    {
+      "file": "ChatGPT Prompts Mastering (Christian Brown) (2023).pdf",
+      "error": "'PdfPipelineOptions' object has no attribute 'backend'"
+    },
+    {
+      "file": "2023.08.09_TMB_CHUNG CU-II.14.pdf",
+      "error": "'PdfPipelineOptions' object has no attribute 'backend'"
+    },
+    {
+      "file": "Hồ sơ đề nghị chấp thuận chủ trương đầu tư dự án- CTY HTC - Copy.pdf",
+      "error": "'PdfPipelineOptions' object has no attribute 'backend'"
+    },
+    {
+      "file": "JD - Giám Đốc Điều Hành (Architecture - Interior Design - Construction).pdf",
+      "error": "'PdfPipelineOptions' object has no attribute 'backend'"
+    },
+    {
+      "file": "NHD_PROFILE - Copy - Copy.pdf",
+      "error": "'PdfPipelineOptions' object has no attribute 'backend'"
+    },
+    {
+      "file": "QH-05-14-SDD-Model - Copy.pdf",
+      "error": "'PdfPipelineOptions' object has no attribute 'backend'"
+    },
+    {
+      "file": "22.07.18 PAT BC KHU A - Copy - Copy.pdf",
+      "error": "'PdfPipelineOptions' object has no attribute 'backend'"
+    },
+    {
+      "file": "XIN PHEP THUA 507  TO 10 -Model.pdf",
+      "error": "'PdfPipelineOptions' object has no attribute 'backend'"
+    },
+    {
+      "file": "2023.06.24_TMB_CHUNG CU-II.14.pdf",
+      "error": "'PdfPipelineOptions' object has no attribute 'backend'"
+    },
+    {
+      "file": "quyet%20dinh%20giao%20dat%20nam%202004%20cua%20UBNd%20tphcm.pdf",
+      "error": "'PdfPipelineOptions' object has no attribute 'backend'"
+    },
+    {
+      "file": "171030 313.STC-BVG Hướng dẫn lấy TKCS TKKT để tính nghĩa vụ tài chính.pdf",
+      "error": "'PdfPipelineOptions' object has no attribute 'backend'"
+    },
+    {
+      "file": "QH-05-14-SDD-Model.pdf",
+      "error": "'PdfPipelineOptions' object has no attribute 'backend'"
+    },
+    {
+      "file": "230306 2946.SXD-PTN&TTBDS So Xay dung yeu cau Quan Huyen gui thong tin dieu chinh Ke hoach su dung dat.pdf",
+      "error": "'PdfPipelineOptions' object has no attribute 'backend'"
+    },
+    {
+      "file": "Baogia_TVXD-QH_Nhon Duc-Nha Be - Copy.pdf",
+      "error": "'PdfPipelineOptions' object has no attribute 'backend'"
+    },
+    {
+      "file": "11. giay phep hung long  2022 (1) - Copy.pdf",
+      "error": "'PdfPipelineOptions' object has no attribute 'backend'"
+    },
+    {
+      "file": "211031 Thuyết minh xin phe duyet du an dau tu du an KDC Ven Sông Nguyễn Bình.doc",
+      "error": "File format not allowed: 211031 Thuyết minh xin phe duyet du an dau tu du an KDC Ven Sông Nguyễn Bình.doc"
+    },
+    {
+      "file": "new doc 2018-11-16 08.42.28 - Copy.pdf",
+      "error": "'PdfPipelineOptions' object has no attribute 'backend'"
+    },
+    {
+      "file": "201930101-PP1 [Recovered] - Copy.pdf",
+      "error": "'PdfPipelineOptions' object has no attribute 'backend'"
+    },
+    {
+      "file": "230525_GP-Masterplan - 1 ranh - Copy.pdf",
+      "error": "'PdfPipelineOptions' object has no attribute 'backend'"
+    },
+    {
+      "file": "22.07.18 PAT BC KHU A.pdf",
+      "error": "'PdfPipelineOptions' object has no attribute 'backend'"
+    },
+    {
+      "file": "Hội thảo về đăng ký thế chấp, xóa chấp tài sản đảm bảo Nghị định 99-2022 - Copy.pdf",
+      "error": "'PdfPipelineOptions' object has no attribute 'backend'"
+    },
+    {
+      "file": "tai_lieu_dinh_kem_32202312.pdf",
+      "error": "'PdfPipelineOptions' object has no attribute 'backend'"
+    },
+    {
+      "file": "7A37v1.2(G52-7A371XH)(B350M MORTAR) - Copy.pdf",
+      "error": "'PdfPipelineOptions' object has no attribute 'backend'"
+    },
+    {
+      "file": "HSTKTC.NHÀ A.TRUYỀN - Copy - Copy.pdf",
+      "error": "'PdfPipelineOptions' object has no attribute 'backend'"
+    },
+    {
+      "file": "CafésBars_in_Vietnam (1).pdf",
+      "error": "'PdfPipelineOptions' object has no attribute 'backend'"
+    },
+    {
+      "file": "NHD_PROFILE.pdf",
+      "error": "'PdfPipelineOptions' object has no attribute 'backend'"
+    },
+    {
+      "file": "CafésBars_in_Vietnam (1) - Copy.pdf",
+      "error": "'PdfPipelineOptions' object has no attribute 'backend'"
+    },
+    {
+      "file": "20230725102906HoSoKyThuatThuaDat1 - Copy.doc",
+      "error": "'utf-8' codec can't decode byte 0xd0 in position 0: invalid continuation byte"
+    },
+    {
+      "file": "MAIKA - FORM MAU DE XUAT GACH1 - V1.0 - Copy - Copy.pdf",
+      "error": "'PdfPipelineOptions' object has no attribute 'backend'"
+    },
+    {
+      "file": "2023.08.09_TMB_CHUNG CU-II.14 - Copy.pdf",
+      "error": "'PdfPipelineOptions' object has no attribute 'backend'"
+    },
+    {
+      "file": "FILE_20190114_152645_scan0081_07f04a7008512d92acf1e46e61318a1a.pdf",
+      "error": "'PdfPipelineOptions' object has no attribute 'backend'"
+    },
+    {
+      "file": "20250713221822936_SXD trả lời SNNMT (1).pdf",
+      "error": "'PdfPipelineOptions' object has no attribute 'backend'"
+    },
+    {
+      "file": "giấy phép NSG cap nhập mới nhất ngày 31..pdf",
+      "error": "'PdfPipelineOptions' object has no attribute 'backend'"
+    },
+    {
+      "file": "NĐ 84_2024_ND-CP_phân cấp thẩm quyền quản lý cho HCM.pdf",
+      "error": "'PdfPipelineOptions' object has no attribute 'backend'"
+    },
+    {
+      "file": "220622 4861.VP-ĐT Tháo gỡ do thay đổi thiết kế hầm so với quy hoạch.pdf",
+      "error": "'PdfPipelineOptions' object has no attribute 'backend'"
+    },
+    {
+      "file": "TKYT KDC VEN SONG NGUYEN BINH - 2023.02.21 (1).pdf",
+      "error": "'PdfPipelineOptions' object has no attribute 'backend'"
+    },
+    {
+      "file": "VP ATV - De cuong KSDC bo sung - Copy.pdf",
+      "error": "'PdfPipelineOptions' object has no attribute 'backend'"
+    },
+    {
+      "file": "Quy hoạch phân khu, quy hoạch chung thành phố Cần Thơ.pdf",
+      "error": "'PdfPipelineOptions' object has no attribute 'backend'"
+    }
+  ],
+  "summary": {
+    "successRate": "15.0%",
+    "avgProcessingTime": "1.79s",
+    "fastestFile": {
+      "name": "2019-0729-BANG THONG KE - Public Areas.xlsx",
+      "time": "0.02s"
+    },
+    "slowestFile": {
+      "name": "190104 Presentation NHA LAP GHEP_Effective_Rev06.pptx",
+      "time": "15.34s"
+    },
+    "byType": {
+      ".pdf": {
+        "total": 82,
+        "success": 0,
+        "successRate": "0.0%",
+        "avgTime": "N/A"
+      },
+      ".xls": {
+        "total": 1,
+        "success": 0,
+        "successRate": "0.0%",
+        "avgTime": "N/A"
+      },
+      ".docx": {
+        "total": 4,
+        "success": 4,
+        "successRate": "100.0%",
+        "avgTime": "0.11s"
+      },
+      ".xlsx": {
+        "total": 10,
+        "success": 10,
+        "successRate": "100.0%",
+        "avgTime": "1.11s"
+      },
+      ".doc": {
+        "total": 2,
+        "success": 0,
+        "successRate": "0.0%",
+        "avgTime": "N/A"
+      },
+      ".pptx": {
+        "total": 1,
+        "success": 1,
+        "successRate": "100.0%",
+        "avgTime": "15.34s"
+      }
+    }
+  },
+  "endTime": "2025-10-06T10:22:19.470049"
+}

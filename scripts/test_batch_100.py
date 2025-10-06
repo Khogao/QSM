@@ -15,6 +15,12 @@ from pathlib import Path
 from datetime import datetime
 from collections import defaultdict
 
+# Fix Windows console encoding for Unicode characters
+if sys.platform == 'win32':
+    import codecs
+    sys.stdout = codecs.getwriter('utf-8')(sys.stdout.buffer, 'strict')
+    sys.stderr = codecs.getwriter('utf-8')(sys.stderr.buffer, 'strict')
+
 # Add project root to path
 sys.path.insert(0, str(Path(__file__).parent.parent))
 

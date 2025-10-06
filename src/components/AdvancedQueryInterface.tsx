@@ -17,6 +17,8 @@ import {
   Brain, Sparkles, AlertCircle
 } from 'lucide-react';
 import { callLLM, streamLLM, type LLMRequest } from '../services/llmService';
+import { SimpleRAG, buildRAGPrompt, type RAGSearchResult, type LLMConfig } from '../services/simpleRAG';
+import { useAiModel } from '../hooks/useAiModel';
 
 interface RAGChunk {
   id: string;
@@ -77,6 +79,9 @@ export const AdvancedQueryInterface: React.FC<AdvancedQueryInterfaceProps> = ({ 
   
   const answerRef = useRef<HTMLDivElement>(null);
   const scrollBottomRef = useRef<HTMLDivElement>(null);
+  
+  // Get AI model hook for embeddings
+  const { generateEmbedding } = useAiModel();
 
   // Auto-scroll to bottom when streaming
   useEffect(() => {
@@ -100,12 +105,15 @@ export const AdvancedQueryInterface: React.FC<AdvancedQueryInterfaceProps> = ({ 
     const startTime = performance.now();
 
     try {
-      // Step 1: Retrieve RAG chunks
+      // Step 1: Retrieve RAG chunks (REAL IMPLEMENTATION)
+      console.log('[Query] Step 1: Retrieving RAG chunks...');
       const chunks = await retrieveRAGChunks(query);
+      console.log(`[Query] Retrieved ${chunks.length} chunks`);
       
       // Step 2: Web search (if enabled)
       let webResults: WebResult[] = [];
       if (config.useWebSearch) {
+        console.log('[Query] Step 2: Performing web search...');
         webResults = await performWebSearch(query);
         
         // Download web files (if enabled)
@@ -114,35 +122,66 @@ export const AdvancedQueryInterface: React.FC<AdvancedQueryInterfaceProps> = ({ 
         }
       }
       
-      // Step 3: Build LLM request
-      const llmRequest: LLMRequest = {
-        provider: config.provider as any,
-        model: config.model,
-        prompt: buildPrompt(query, chunks, webResults),
-        temperature: config.temperature,
-        maxTokens: config.maxTokens,
-        stream: true
+      // Step 3: Build RAG prompt using SimpleRAG
+      console.log('[Query] Step 3: Building RAG prompt...');
+      const ragSearchResults: RAGSearchResult[] = chunks.map(chunk => ({
+        id: chunk.id,
+        text: chunk.text,
+        embedding: [], // Not needed for prompt building
+        documentName: chunk.source,
+        documentId: chunk.id,
+        folderId: chunk.metadata?.folderId,
+        pageNumber: chunk.page,
+        metadata: chunk.metadata,
+        score: chunk.score
+      }));
+      
+      const prompt = buildRAGPrompt(query, ragSearchResults);
+      console.log('[Query] Prompt length:', prompt.length, 'characters');
+      
+      // Step 4: Get API keys from localStorage
+      const apiKeys = {
+        openai: localStorage.getItem('openai_api_key') || undefined,
+        gemini: localStorage.getItem('gemini_api_key') || undefined,
+        claude: localStorage.getItem('claude_api_key') || undefined,
+        azure: localStorage.getItem('azure_openai_api_key') || undefined,
       };
       
-      // Step 4: Stream LLM response
+      // Step 5: Build LLM config
+      const llmConfig: LLMConfig = {
+        provider: config.provider as any,
+        model: config.model,
+        apiKey: apiKeys[config.provider as keyof typeof apiKeys],
+        temperature: config.temperature,
+        maxTokens: config.maxTokens
+      };
+      
+      console.log('[Query] Step 4: Streaming LLM response...');
+      
+      // Step 6: Stream LLM response using SimpleRAG
       let fullAnswer = '';
       let tokenCount = 0;
       
-      for await (const chunk of streamLLM(llmRequest)) {
+      for await (const chunk of SimpleRAG.queryLLMStream(prompt, llmConfig)) {
         if (chunk.text) {
           fullAnswer += chunk.text;
           setCurrentAnswer(fullAnswer);
           tokenCount++;
         }
+        if (chunk.done) break;
       }
       
-      // Step 5: Parse citations
+      console.log('[Query] Step 5: Extracting citations...');
+      
+      // Step 7: Parse citations
       const citations = extractCitations(fullAnswer, chunks);
       
       // Calculate metrics
       const endTime = performance.now();
       const latency = endTime - startTime;
-      const tokensPerSec = (tokenCount / latency) * 1000;
+      const tokensPerSec = tokenCount > 0 ? (tokenCount / latency) * 1000 : 0;
+      
+      console.log(`[Query] Complete! Tokens: ${tokenCount}, Latency: ${latency.toFixed(0)}ms, Speed: ${tokensPerSec.toFixed(1)} tok/s`);
       
       // Save result
       const result: QueryResult = {
@@ -171,39 +210,48 @@ export const AdvancedQueryInterface: React.FC<AdvancedQueryInterfaceProps> = ({ 
 
   /**
    * Retrieve RAG chunks from vector database
+   * REAL IMPLEMENTATION using SimpleRAG service
    */
   const retrieveRAGChunks = async (query: string): Promise<RAGChunk[]> => {
-    // Call RAG service to retrieve top-k chunks
-    // This would integrate with your existing RAG implementation
-    
-    // Placeholder: Simulate RAG retrieval
-    // TODO: Replace with actual RAG service call
-    return [
-      {
-        id: 'chunk-1',
-        text: 'Quy trình xét duyệt thủ tục đầu tư trước 1/7/2025...',
-        source: 'Luật Đầu Tư 2020.pdf',
-        page: 15,
-        score: 0.92,
-        metadata: { category: 'legal' }
-      },
-      {
-        id: 'chunk-2',
-        text: 'Thủ tục xin cấp Giấy chứng nhận đăng ký đầu tư...',
-        source: 'Nghị định 31-2021.pdf',
-        page: 8,
-        score: 0.88,
-        metadata: { category: 'procedure' }
-      },
-      {
-        id: 'chunk-3',
-        text: 'Quy định mới về thẩm quyền phê duyệt sau 1/7/2025...',
-        source: 'Luật Đầu Tư (Sửa đổi 2024).pdf',
-        page: 22,
-        score: 0.85,
-        metadata: { category: 'legal' }
+    try {
+      console.log('[Query] Generating embedding for query:', query.substring(0, 50) + '...');
+      
+      // Step 1: Generate embedding for query
+      const queryEmbedding = await generateEmbedding(query);
+      
+      if (!queryEmbedding || !queryEmbedding.data) {
+        console.warn('[Query] No embedding generated, using empty results');
+        return [];
       }
-    ];
+      
+      // Extract embedding array (Transformers.js returns { data: Float32Array })
+      const embeddingArray = Array.from(queryEmbedding.data) as number[];
+      
+      console.log('[Query] Embedding generated, searching vector database...');
+      console.log('[Query] Embedding dimensions:', embeddingArray.length);
+      
+      // Step 2: Search vector database
+      const searchResults = await SimpleRAG.searchChunks(embeddingArray, 5); // Top-5 results
+      
+      console.log('[Query] Found', searchResults.length, 'relevant chunks');
+      
+      // Step 3: Convert to RAGChunk format
+      const ragChunks: RAGChunk[] = searchResults.map(result => ({
+        id: result.id,
+        text: result.text,
+        source: result.documentName,
+        page: result.pageNumber,
+        score: result.score,
+        metadata: result.metadata || {}
+      }));
+      
+      return ragChunks;
+      
+    } catch (error) {
+      console.error('[Query] Failed to retrieve RAG chunks:', error);
+      // Return empty array on error to allow query to continue
+      return [];
+    }
   };
 
   /**
