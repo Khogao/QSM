@@ -1,0 +1,2 @@
+docling>=1.0.0
+easyocr>=1.7.0

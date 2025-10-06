@@ -1,10 +1,15 @@
 // Document processing utilities for PDF, DOCX, TXT files
+// Uses IBM Docling for enhanced PDF/DOCX processing with table extraction
 
 import * as pdfjsLib from 'pdfjs-dist';
 import mammoth from 'mammoth';
 import { chunkText } from './vectorUtils';
+import { doclingService } from '../services/doclingService';
+import fs from 'fs-extra';
+import path from 'path';
+import os from 'os';
 
-// Configure PDF.js worker
+// Configure PDF.js worker (fallback only)
 pdfjsLib.GlobalWorkerOptions.workerSrc = `//cdnjs.cloudflare.com/ajax/libs/pdf.js/${pdfjsLib.version}/pdf.worker.min.js`;
 
 export interface ProcessingResult {
@@ -14,6 +19,8 @@ export interface ProcessingResult {
     pageCount?: number;
     wordCount: number;
     fileName: string;
+    tableCount?: number;
+    processingMethod?: 'docling' | 'legacy';
   };
 }
 
@@ -105,27 +112,83 @@ export async function processDocument(
 ): Promise<ProcessingResult> {
   try {
     let text = '';
+    let pageCount: number | undefined;
     const fileType = file.name.toLowerCase();
     
-    // Extract text based on file type
-    if (fileType.endsWith('.pdf')) {
-      text = await extractTextFromPDF(file, (progress) => {
-        if (onProgress) onProgress(progress * 0.5); // First 50% for extraction
-      });
-    } else if (fileType.endsWith('.docx')) {
-      text = await extractTextFromDOCX(file, (progress) => {
-        if (onProgress) onProgress(progress * 0.5);
-      });
+    // Try Docling first for PDF/DOCX (enhanced extraction with tables)
+    if (fileType.endsWith('.pdf') || fileType.endsWith('.docx')) {
+      try {
+        if (onProgress) onProgress(10);
+        
+        // Save file to temp location
+        const tempDir = os.tmpdir();
+        const tempFilePath = path.join(tempDir, `qsm_${Date.now()}_${file.name}`);
+        const buffer = Buffer.from(await file.arrayBuffer());
+        await fs.writeFile(tempFilePath, buffer);
+        
+        if (onProgress) onProgress(20);
+        
+        // Process with Docling
+        const doclingResult = await doclingService.processDocument(tempFilePath, {
+          enableOcr: true,
+          enableTables: true,
+          ocrLanguages: ['en', 'vi'],
+          outputFormat: 'markdown'
+        });
+        
+        if (onProgress) onProgress(40);
+        
+        // Clean up temp file
+        await fs.remove(tempFilePath);
+        
+        if (doclingResult.status === 'success' && doclingResult.content) {
+          text = doclingResult.content;
+          
+          // Include extracted tables in the text
+          if (doclingResult.tables && doclingResult.tables.length > 0) {
+            text += '\n\n## Extracted Tables\n\n';
+            doclingResult.tables.forEach((table, idx) => {
+              text += `\n### Table ${idx + 1}\n${table.markdown}\n`;
+            });
+          }
+          
+          pageCount = doclingResult.metadata?.pages;
+          console.log('✅ Docling processed successfully:', {
+            pages: pageCount,
+            tables: doclingResult.tables?.length || 0,
+            confidence: doclingResult.metadata?.confidence
+          });
+        } else {
+          throw new Error('Docling processing failed, falling back to legacy parser');
+        }
+      } catch (doclingError) {
+        console.warn('Docling not available or failed, using fallback parser:', doclingError);
+        
+        // Fallback to legacy parsers
+        if (fileType.endsWith('.pdf')) {
+          text = await extractTextFromPDF(file, (progress) => {
+            if (onProgress) onProgress(progress * 0.5);
+          });
+        } else if (fileType.endsWith('.docx')) {
+          text = await extractTextFromDOCX(file, (progress) => {
+            if (onProgress) onProgress(progress * 0.5);
+          });
+        }
+      }
     } else if (fileType.endsWith('.txt')) {
       text = await extractTextFromTXT(file, (progress) => {
         if (onProgress) onProgress(progress * 0.5);
       });
     } else if (fileType.endsWith('.doc')) {
-      // For .doc files, show warning but try DOCX parser
-      console.warn('Legacy .doc format detected, attempting DOCX parser');
-      text = await extractTextFromDOCX(file, (progress) => {
-        if (onProgress) onProgress(progress * 0.5);
-      });
+      // For .doc files, try Docling first, then fallback
+      console.warn('Legacy .doc format detected, attempting parsers');
+      try {
+        text = await extractTextFromDOCX(file, (progress) => {
+          if (onProgress) onProgress(progress * 0.5);
+        });
+      } catch {
+        throw new Error('Failed to process .doc file. Please convert to .docx format.');
+      }
     } else {
       throw new Error(`Unsupported file type: ${file.name}`);
     }
@@ -171,13 +234,17 @@ export async function processDocument(
     // Count words
     const wordCount = text.split(/\s+/).length;
     
+    // Detect if Docling was used (presence of pageCount means Docling succeeded)
+    const processingMethod = pageCount !== undefined ? 'docling' : 'legacy';
+    
     return {
       text,
       chunks: chunks.length,
       metadata: {
         wordCount,
         fileName,
-        pageCount: fileType.endsWith('.pdf') ? undefined : undefined
+        pageCount,
+        processingMethod
       }
     };
   } catch (error) {
