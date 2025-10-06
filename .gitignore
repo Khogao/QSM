@@ -26,6 +26,12 @@ desktop.ini
 .env.local
 .env.*.local
 
+# API Keys & Tokens (NEVER COMMIT!)
+**/hf_token.txt
+**/api_keys.json
+huggingface_token.txt
+.hf_token
+
 # Logs
 *.log
 npm-debug.log*
@@ -67,3 +73,4 @@ scratch/
 *.db
 *.sqlite
 *.sqlite3
+node_modules

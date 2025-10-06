@@ -1,6 +1,7 @@
 import { FolderList } from './FolderList';
 import { ModelSelector } from './ModelSelector';
 import { OcrConfigPanel } from './OcrConfigPanel';
+import { ModelSelectionPanel } from './ModelSelectionPanel';
 import { Folder as FolderType } from '../hooks/useDocuments';
 
 interface SidebarContentProps {
@@ -67,9 +68,14 @@ export const SidebarContent: React.FC<SidebarContentProps> = ({
         />
       </div>
 
-      {/* Model Selector Section */}
+      {/* Model Selection Panel (New AI Integration) */}
+      <div className="p-4 border-b border-gray-200 overflow-y-auto">
+        <ModelSelectionPanel />
+      </div>
+
+      {/* Legacy Model Selector (Keep for backward compatibility) */}
       <div className="p-4 border-b border-gray-200">
-        <h2 className="font-semibold mb-2">Mô hình AI</h2>
+        <h2 className="font-semibold mb-2">Mô hình AI (Legacy)</h2>
         <ModelSelector
           value={selectedModel}
           onValueChange={onModelChange}

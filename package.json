@@ -16,12 +16,14 @@
     "@hookform/resolvers": "^5.2.2",
     "@huggingface/transformers": "^3.7.5",
     "better-sqlite3": "^9.6.0",
+    "crypto-hash": "^4.0.0",
     "electron-store": "^8.1.0",
     "fs-extra": "^11.2.0",
     "lucide-react": "^0.544.0",
     "onnxruntime-web": "^1.23.0",
     "react-hook-form": "^7.64.0",
     "react-resizable-panels": "^3.0.6",
+    "sqlite3": "^5.1.7",
     "zod": "^4.1.11"
   },
   "devDependencies": {
