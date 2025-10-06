@@ -1,0 +1,187 @@
+{
+  "timestamp": "2025-10-06T13:23:00.540041",
+  "sample_size": 20,
+  "total_time_seconds": 860.1,
+  "results": [
+    {
+      "file": "RANH HT VA RANH GCN_GUI-Model.pdf",
+      "path": "D:\\Work\\Coding\\archi-query-master\\Documents\\Legals\\RANH HT VA RANH GCN_GUI-Model.pdf",
+      "size_mb": 0.03,
+      "success": true,
+      "time_seconds": 5.77,
+      "output_length": 14,
+      "error": null
+    },
+    {
+      "file": "Confirmation_for_Booking_ID_#_1468787268.pdf",
+      "path": "D:\\Work\\Coding\\archi-query-master\\Documents\\Legals\\Confirmation_for_Booking_ID_#_1468787268.pdf",
+      "size_mb": 0.03,
+      "success": true,
+      "time_seconds": 1.24,
+      "output_length": 183,
+      "error": null
+    },
+    {
+      "file": "Fraser residence Hanoi- Calculations - Copy.pdf",
+      "path": "D:\\Work\\Coding\\archi-query-master\\Documents\\Fraser residence Hanoi- Calculations - Copy.pdf",
+      "size_mb": 0.04,
+      "success": true,
+      "time_seconds": 7.04,
+      "output_length": 1859,
+      "error": null
+    },
+    {
+      "file": "Fraser residence Hanoi- Calculations.pdf",
+      "path": "D:\\Work\\Coding\\archi-query-master\\Documents\\Fraser residence Hanoi- Calculations.pdf",
+      "size_mb": 0.04,
+      "success": true,
+      "time_seconds": 6.77,
+      "output_length": 1859,
+      "error": null
+    },
+    {
+      "file": "230425_TRL_721.QHPTTND-PGDCTD_Y kien cua BTNMT ve ho so dieu chinh CTDT.pdf",
+      "path": "D:\\Work\\Coding\\archi-query-master\\Documents\\Legals\\230425_TRL_721.QHPTTND-PGDCTD_Y kien cua BTNMT ve ho so dieu chinh CTDT.pdf",
+      "size_mb": 0.05,
+      "success": true,
+      "time_seconds": 21.32,
+      "output_length": 220,
+      "error": null
+    },
+    {
+      "file": "BAN VE 63BIS MDC dien tich tret - Copy.pdf",
+      "path": "D:\\Work\\Coding\\archi-query-master\\Documents\\BAN VE 63BIS MDC dien tich tret - Copy.pdf",
+      "size_mb": 0.06,
+      "success": true,
+      "time_seconds": 1.75,
+      "output_length": 38,
+      "error": null
+    },
+    {
+      "file": "BAN VE 63BIS MDC dien tich tret.pdf",
+      "path": "D:\\Work\\Coding\\archi-query-master\\Documents\\BAN VE 63BIS MDC dien tich tret.pdf",
+      "size_mb": 0.06,
+      "success": true,
+      "time_seconds": 1.68,
+      "output_length": 38,
+      "error": null
+    },
+    {
+      "file": "Huong dan dau thau- Thau phu.pdf",
+      "path": "D:\\Work\\Coding\\archi-query-master\\Documents\\Legals\\Huong dan dau thau- Thau phu.pdf",
+      "size_mb": 1.1,
+      "success": true,
+      "time_seconds": 31.99,
+      "output_length": 47007,
+      "error": null
+    },
+    {
+      "file": "513tbvp_signed (1).pdf",
+      "path": "D:\\Work\\Coding\\archi-query-master\\Documents\\Legals\\513tbvp_signed (1).pdf",
+      "size_mb": 1.11,
+      "success": true,
+      "time_seconds": 38.4,
+      "output_length": 4354,
+      "error": null
+    },
+    {
+      "file": "513tbvp_signed (2).pdf",
+      "path": "D:\\Work\\Coding\\archi-query-master\\Documents\\Legals\\513tbvp_signed (2).pdf",
+      "size_mb": 1.11,
+      "success": true,
+      "time_seconds": 35.33,
+      "output_length": 4354,
+      "error": null
+    },
+    {
+      "file": "513tbvp_signed.pdf",
+      "path": "D:\\Work\\Coding\\archi-query-master\\Documents\\Legals\\513tbvp_signed.pdf",
+      "size_mb": 1.11,
+      "success": true,
+      "time_seconds": 36.26,
+      "output_length": 4354,
+      "error": null
+    },
+    {
+      "file": "FILE_20220907_161554_NQ 05 HDLSTQ_0001.pdf",
+      "path": "D:\\Work\\Coding\\archi-query-master\\Documents\\Legals\\FILE_20220907_161554_NQ 05 HDLSTQ_0001.pdf",
+      "size_mb": 1.11,
+      "success": true,
+      "time_seconds": 50.45,
+      "output_length": 1682,
+      "error": null
+    },
+    {
+      "file": "01. 2025 09 04_6171-SXD-QHKVTT ý kien doi voi BCRS 762 BQ.pdf",
+      "path": "D:\\Work\\Coding\\archi-query-master\\Documents\\Legals\\01. 2025 09 04_6171-SXD-QHKVTT ý kien doi voi BCRS 762 BQ.pdf",
+      "size_mb": 1.12,
+      "success": true,
+      "time_seconds": 38.01,
+      "output_length": 876,
+      "error": null
+    },
+    {
+      "file": "TIEN DO BE XLNT - PAT FIX (KHUNG TEN) (1).pdf",
+      "path": "D:\\Work\\Coding\\archi-query-master\\Documents\\Legals\\TIEN DO BE XLNT - PAT FIX (KHUNG TEN) (1).pdf",
+      "size_mb": 1.12,
+      "success": true,
+      "time_seconds": 49.62,
+      "output_length": 25972,
+      "error": null
+    },
+    {
+      "file": "2024.07.06_TMB_CHUNG CU-II.14.pdf",
+      "path": "D:\\Work\\Coding\\archi-query-master\\Documents\\Legals\\2024.07.06_TMB_CHUNG CU-II.14.pdf",
+      "size_mb": 4.0,
+      "success": true,
+      "time_seconds": 40.05,
+      "output_length": 14678,
+      "error": null
+    },
+    {
+      "file": "23_07509_SKHĐT-KTĐN- kế hoạch tổ công tác.pdf",
+      "path": "D:\\Work\\Coding\\archi-query-master\\Documents\\Legals\\23_07509_SKHĐT-KTĐN- kế hoạch tổ công tác.pdf",
+      "size_mb": 4.02,
+      "success": true,
+      "time_seconds": 136.73,
+      "output_length": 4005,
+      "error": null
+    },
+    {
+      "file": "2309_BXD_QHKT_0001_20230605052236706700_signed20230605052247 - Copy.pdf",
+      "path": "D:\\Work\\Coding\\archi-query-master\\Documents\\Legals\\2309_BXD_QHKT_0001_20230605052236706700_signed20230605052247 - Copy.pdf",
+      "size_mb": 4.06,
+      "success": true,
+      "time_seconds": 52.27,
+      "output_length": 1645,
+      "error": null
+    },
+    {
+      "file": "2309_BXD_QHKT_0001_20230605052236706700_signed20230605052247.pdf",
+      "path": "D:\\Work\\Coding\\archi-query-master\\Documents\\Legals\\2309_BXD_QHKT_0001_20230605052236706700_signed20230605052247.pdf",
+      "size_mb": 4.06,
+      "success": true,
+      "time_seconds": 52.51,
+      "output_length": 1645,
+      "error": null
+    },
+    {
+      "file": "PW_HT_BC_Finalconcept_1 (1) - Copy.pdf",
+      "path": "D:\\Work\\Coding\\archi-query-master\\Documents\\PW_HT_BC_Finalconcept_1 (1) - Copy.pdf",
+      "size_mb": 4.08,
+      "success": true,
+      "time_seconds": 128.4,
+      "output_length": 685,
+      "error": null
+    },
+    {
+      "file": "PW_HT_BC_Finalconcept_1 (1).pdf",
+      "path": "D:\\Work\\Coding\\archi-query-master\\Documents\\PW_HT_BC_Finalconcept_1 (1).pdf",
+      "size_mb": 4.08,
+      "success": true,
+      "time_seconds": 124.41,
+      "output_length": 685,
+      "error": null
+    }
+  ]
+}
