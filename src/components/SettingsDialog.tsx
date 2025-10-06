@@ -357,11 +357,12 @@ export const SettingsDialog = () => {
 
             {/* Encryption Toggle */}
             <div className="flex items-start space-x-3 space-y-0">
-              {/* @ts-ignore */}
-              <Checkbox
+              <input
+                type="checkbox"
                 id="encryptData"
                 checked={config.encryptData}
-                onCheckedChange={(checked: boolean) => updateConfig('encryptData', checked)}
+                onChange={(e) => updateConfig('encryptData', e.target.checked)}
+                className="mt-1 h-4 w-4 rounded border-gray-300"
               />
               <div className="space-y-1">
                 <Label
@@ -418,11 +419,12 @@ export const SettingsDialog = () => {
             </div>
 
             <div className="flex items-start space-x-3 space-y-0">
-              {/* @ts-ignore - Checkbox type issue */}
-              <Checkbox
+              <input
+                type="checkbox"
                 id="autoBackup"
                 checked={config.autoBackup}
-                onCheckedChange={(checked) => updateConfig('autoBackup', checked)}
+                onChange={(e) => updateConfig('autoBackup', e.target.checked)}
+                className="mt-1 h-4 w-4 rounded border-gray-300"
               />
               <div className="space-y-1">
                 <Label htmlFor="autoBackup">

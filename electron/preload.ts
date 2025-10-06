@@ -11,6 +11,20 @@ const electronAPI = {
   
   // Export
   exportDatabase: () => ipcRenderer.invoke('db:export'),
+  
+  // Organization features
+  getOrganizationStats: () => ipcRenderer.invoke('organization:get-stats'),
+  batchSummarize: (onProgress?: (current: number, total: number) => void) => {
+    if (onProgress) {
+      const listener = (_event: any, current: number, total: number) => onProgress(current, total);
+      ipcRenderer.on('organization:summarize-progress', listener);
+    }
+    return ipcRenderer.invoke('organization:batch-summarize');
+  },
+  detectDuplicates: () => ipcRenderer.invoke('organization:detect-duplicates'),
+  suggestFolders: () => ipcRenderer.invoke('organization:suggest-folders'),
+  deleteDuplicate: (duplicateId: string) => ipcRenderer.invoke('organization:delete-duplicate', duplicateId),
+  applyFolderSuggestion: (suggestionId: number) => ipcRenderer.invoke('organization:apply-folder-suggestion', suggestionId),
 };
 
 contextBridge.exposeInMainWorld('electronAPI', electronAPI);

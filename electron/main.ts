@@ -2,6 +2,7 @@ import { app, BrowserWindow, ipcMain, dialog, Menu } from 'electron';
 import path from 'path';
 import { LocalStorage } from './services/localStorage';
 import { FileImport } from './services/fileImport';
+import { registerOrganizationHandlers } from './organizationHandlers';
 
 let mainWindow: BrowserWindow | null = null;
 let storage: LocalStorage;
@@ -278,6 +279,7 @@ app.on('ready', () => {
   
   // Register IPC handlers
   registerIPCHandlers();
+  registerOrganizationHandlers(); // Organization features
   
   // Create menu
   createMenu();
