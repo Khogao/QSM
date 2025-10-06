@@ -101,7 +101,7 @@ export const DocumentManagement: React.FC<DocumentManagementProps> = ({
         setProcessingFile(file.name);
         
         try {
-          const result = await processDocument(file, values.folderId, file.name, (progress) => {
+          const result = await processDocument(file, file.name, (progress) => {
             const overallProgress = ((processedFiles + progress / 100) / totalFiles) * 100;
             setProcessingProgress(overallProgress);
           }, embeddingPipeline);
@@ -213,7 +213,7 @@ export const DocumentManagement: React.FC<DocumentManagementProps> = ({
         setProcessingFile(file.name);
         
         try {
-          const result = await processDocument(file, selectedFolderId, file.name, (progress) => {
+          const result = await processDocument(file, file.name, (progress) => {
             const overallProgress = ((processedFiles + progress / 100) / totalFiles) * 100;
             setProcessingProgress(overallProgress);
           }, embeddingPipeline);

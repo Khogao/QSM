@@ -100,10 +100,42 @@ export async function extractTextFromTXT(
   }
 }
 
-// Main document processor
+/**
+ * Main document processor with Docling-first, legacy-fallback strategy
+ * 
+ * Processing Strategy:
+ * 1. Try IBM Docling first (if available) for PDF/DOCX files
+ *    - Enhanced table extraction (95%+ accuracy with TableFormer)
+ *    - Multi-engine OCR support (Vietnamese, English, etc.)
+ *    - Formula to LaTeX conversion
+ *    - Code block recognition
+ * 
+ * 2. Fallback to legacy parsers if:
+ *    - Docling not installed (Python/pip dependencies missing)
+ *    - Docling processing fails
+ *    - User preference set to "Legacy Only" (future feature)
+ * 
+ * 3. Always use legacy for TXT files (no Docling needed)
+ * 
+ * @param file - File object to process (PDF, DOCX, TXT)
+ * @param fileName - Name of the file (for metadata)
+ * @param onProgress - Progress callback function (0-100)
+ * @param embeddingPipeline - HuggingFace embedding pipeline
+ * @param chunkSize - Text chunk size in characters (default: 512)
+ * @param chunkOverlap - Overlap between chunks in characters (default: 50)
+ * @returns ProcessingResult with text, chunks, and metadata
+ * 
+ * @example
+ * ```typescript
+ * const result = await processDocument(file, 'contract.pdf', (progress) => {
+ *   console.log(`Processing: ${progress}%`);
+ * });
+ * console.log(result.metadata.processingMethod); // 'docling' or 'legacy'
+ * console.log(result.metadata.tableCount); // Number of tables extracted (Docling only)
+ * ```
+ */
 export async function processDocument(
   file: File,
-  folderId: string,
   fileName: string,
   onProgress?: (progress: number) => void,
   embeddingPipeline?: any,
