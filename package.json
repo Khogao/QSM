@@ -9,6 +9,7 @@
     "dev": "concurrently \"vite --host\" \"npm run electron:dev\"",
     "electron:dev": "wait-on http://localhost:5173 && cross-env NODE_ENV=development electron .",
     "build": "tsc && vite build && electron-builder",
+    "build:linux": "tsc && vite build && electron-builder --linux AppImage",
     "build:portable": "npm run build -- --win portable",
     "preview": "vite preview"
   },
@@ -55,13 +56,21 @@
     "directories": {
       "output": "release"
     },
+    "linux": {
+      "target": [
+        {
+          "target": "AppImage",
+          "arch": ["x64"]
+        }
+      ],
+      "category": "Office",
+      "icon": "public/icon.png"
+    },
     "win": {
       "target": [
         {
           "target": "portable",
-          "arch": [
-            "x64"
-          ]
+          "arch": ["x64"]
         }
       ],
       "icon": "public/icon.ico"

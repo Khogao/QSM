@@ -1,7 +1,6 @@
-import { FolderList } from './FolderList';
-import { ModelSelector } from './ModelSelector';
-import { OcrConfigPanel } from './OcrConfigPanel';
+import { UnifiedFileFolderSelector } from './UnifiedFileFolderSelector';
 import { ModelSelectionPanel } from './ModelSelectionPanel';
+import { OcrConfigPanel } from './OcrConfigPanel';
 import { Folder as FolderType } from '../hooks/useDocuments';
 
 interface SidebarContentProps {
@@ -50,48 +49,39 @@ export const SidebarContent: React.FC<SidebarContentProps> = ({
   readableOcrConfig
 }) => {
   return (
-    <div className="h-full flex flex-col">
-      {/* Folder List Section */}
-      <div className="p-4 border-b border-gray-200">
-        <h2 className="font-semibold mb-2">Thư mục tài liệu</h2>
-        <FolderList
-          folders={folders}
-          selectedFolderId={selectedFolderId}
-          onFolderSelect={onFolderSelect}
-          onAddFolder={onAddFolder}
-          onRenameFolder={onRenameFolder}
-          onDeleteFolder={onDeleteFolder}
-          onToggleFolderSelection={onToggleFolderSelection}
-          onToggleAllFolders={onToggleAllFolders}
-          getSubFolders={getSubFolders}
-          getMainFolders={getMainFolders}
-        />
+    <div className="h-full flex flex-col overflow-hidden">
+      {/* Unified File & Folder Section - Fixed height with internal scroll */}
+      <div className="flex-shrink-0 border-b border-gray-200">
+        <div className="p-4 max-h-[300px] overflow-y-auto">
+          <UnifiedFileFolderSelector
+            folders={folders}
+            selectedFolderId={selectedFolderId}
+            onFolderSelect={onFolderSelect}
+            onAddFolder={onAddFolder}
+            onToggleFolderSelection={onToggleFolderSelection}
+            onToggleAllFolders={onToggleAllFolders}
+            getSubFolders={getSubFolders}
+            getMainFolders={getMainFolders}
+          />
+        </div>
       </div>
 
-      {/* Model Selection Panel (New AI Integration) */}
-      <div className="p-4 border-b border-gray-200 overflow-y-auto">
-        <ModelSelectionPanel />
+      {/* Model Selection Panel - Compact with scroll */}
+      <div className="flex-shrink-0 border-b border-gray-200">
+        <div className="p-4 max-h-[250px] overflow-y-auto">
+          <ModelSelectionPanel />
+        </div>
       </div>
 
-      {/* Legacy Model Selector (Keep for backward compatibility) */}
-      <div className="p-4 border-b border-gray-200">
-        <h2 className="font-semibold mb-2">Mô hình AI (Legacy)</h2>
-        <ModelSelector
-          value={selectedModel}
-          onValueChange={onModelChange}
-          embeddingModel={embeddingModel}
-          onEmbeddingModelChange={onEmbeddingModelChange}
-          useAiModel={aiModelHook}
-        />
-      </div>
-
-      {/* OCR Config Section */}
-      <div className="p-4 border-b border-gray-200">
-        <OcrConfigPanel
-          config={ocrConfig}
-          onConfigUpdate={onOcrConfigUpdate}
-          readableConfig={readableOcrConfig}
-        />
+      {/* OCR Config Section - Collapsible */}
+      <div className="flex-1 overflow-y-auto">
+        <div className="p-4">
+          <OcrConfigPanel
+            config={ocrConfig}
+            onConfigUpdate={onOcrConfigUpdate}
+            readableConfig={readableOcrConfig}
+          />
+        </div>
       </div>
     </div>
   );

@@ -21,21 +21,59 @@ function createWindow() {
   });
 
   // In dev mode, load from vite dev server
-  const isDev = process.env.NODE_ENV === 'development';
+  const isDev = process.env.NODE_ENV === 'development' || !app.isPackaged;
   
   if (isDev) {
     mainWindow.loadURL('http://localhost:5173');
-    // DevTools chỉ mở khi nhấn F12, không auto-open
-    // mainWindow.webContents.openDevTools();
     console.log('🚀 Loading from Vite Dev Server: http://localhost:5173');
   } else {
-    // Production mode
-    mainWindow.loadFile(path.join(__dirname, '../dist/index.html'));
-    console.log('📦 Loading from production build');
+    // Production mode - FIXED PATH RESOLUTION
+    // Use app.getAppPath() to get the correct base path
+    const indexPath = path.join(app.getAppPath(), 'dist', 'index.html');
+    console.log('📦 Loading from production build:', indexPath);
+    
+    mainWindow.loadFile(indexPath).catch(err => {
+      console.error('❌ Failed to load index.html:', err);
+      console.log('🔍 Trying alternative paths...');
+      
+      // Fallback 1: Try relative to __dirname
+      const fallback1 = path.join(__dirname, '../dist/index.html');
+      console.log('   Fallback 1:', fallback1);
+      
+      mainWindow?.loadFile(fallback1).catch(err2 => {
+        console.error('❌ Fallback 1 failed:', err2);
+        
+        // Fallback 2: Try process.resourcesPath
+        const fallback2 = path.join(process.resourcesPath, 'app.asar', 'dist', 'index.html');
+        console.log('   Fallback 2:', fallback2);
+        
+        mainWindow?.loadFile(fallback2).catch(err3 => {
+          console.error('❌ All paths failed!');
+          console.error('__dirname:', __dirname);
+          console.error('app.getAppPath():', app.getAppPath());
+          console.error('process.resourcesPath:', process.resourcesPath);
+        });
+      });
+    });
+  }
+
+  // Open DevTools automatically in dev mode for debugging
+  if (isDev) {
+    mainWindow.webContents.openDevTools();
   }
 
   mainWindow.on('closed', () => {
     mainWindow = null;
+  });
+
+  // Log when page finishes loading
+  mainWindow.webContents.on('did-finish-load', () => {
+    console.log('✅ Page loaded successfully');
+  });
+
+  // Log any page load errors
+  mainWindow.webContents.on('did-fail-load', (event, errorCode, errorDescription) => {
+    console.error('❌ Page failed to load:', errorCode, errorDescription);
   });
 }
 

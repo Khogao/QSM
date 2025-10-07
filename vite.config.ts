@@ -1,7 +1,6 @@
 import { defineConfig } from 'vite';
 import react from '@vitejs/plugin-react';
 import electron from 'vite-plugin-electron';
-import renderer from 'vite-plugin-electron-renderer';
 import path from 'path';
 
 export default defineConfig({
@@ -33,13 +32,31 @@ export default defineConfig({
           }
         }
       }
-    ]),
-    renderer()
+    ])
+    // REMOVED: renderer plugin - it injects require() which breaks in browser context
   ],
   resolve: {
     alias: {
       '@': path.resolve(__dirname, './src')
     }
+  },
+  // Fix for Electron renderer process
+  build: {
+    rollupOptions: {
+      output: {
+        format: 'es', // Use ES modules instead of CommonJS
+        // Don't use require() in renderer
+        inlineDynamicImports: false
+      }
+    },
+    // Target ES2020+ for better module support
+    target: 'esnext',
+    // Don't minify for easier debugging
+    minify: process.env.NODE_ENV === 'production' ? 'esbuild' : false
+  },
+  // Optimize dependencies
+  optimizeDeps: {
+    exclude: ['electron']
   },
   server: {
     port: 5173
