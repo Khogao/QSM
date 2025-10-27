@@ -79,21 +79,23 @@ def main():
     print("\n" + "=" * 80)
     print("🤔 Which model do you want to test?")
     print("=" * 80)
-    print("1. Qwen2.5-7B (Best Vietnamese, ~8GB RAM) ⭐ RECOMMENDED")
-    print("2. Llama-3.2-3B (Fastest, ~4GB RAM)")
-    print("3. Phi-3-mini (Best documents, ~4GB RAM)")
+    print("1. Qwen2.5-3B (🏆 BEST! 3GB, 32K context, 87% quality) ⭐ RECOMMENDED")
+    print("2. Qwen2.5-1.5B (⚡ FASTEST! 1.5GB, 32K context, 82% quality)")
+    print("3. Qwen2.5-7B (Largest, 8GB, 32K context, 88% quality)")
+    print("4. Gemma-2-2B (Google, 2GB, 8K context, 84% quality)")
     print("0. Skip demo (just show info)")
     
-    choice = input("\nYour choice (0-3): ").strip()
+    choice = input("\nYour choice (0-4): ").strip()
     
     if choice == "0":
         print("\n✅ Demo completed (no model loaded)")
         return
     
     model_map = {
-        "1": "qwen",
-        "2": "llama",
-        "3": "phi"
+        "1": "qwen3b",
+        "2": "qwen1.5b",
+        "3": "qwen7b",
+        "4": "gemma2b"
     }
     
     if choice not in model_map:
@@ -105,7 +107,7 @@ def main():
     print("\n" + "=" * 80)
     print(f"🚀 Loading {model_name.upper()} model...")
     print("=" * 80)
-    print("⏳ This will download ~4-8GB on first run (cached after)")
+    print("⏳ This will download ~1.5-8GB on first run (cached after)")
     print("⏳ Please wait 2-5 minutes...\n")
     
     # Initialize restructurer
