@@ -12,9 +12,10 @@ from docx.enum.style import WD_STYLE_TYPE
 from PIL import Image
 from reportlab.lib.pagesizes import A4, letter
 from reportlab.lib.units import inch
-from reportlab.platypus import SimpleDocTemplate, Paragraph, Spacer, PageBreak, Image as RLImage
+from reportlab.platypus import SimpleDocTemplate, Paragraph, Spacer, PageBreak, Image as RLImage, Table as RLTable, TableStyle
 from reportlab.lib.styles import getSampleStyleSheet, ParagraphStyle
 from reportlab.lib.enums import TA_CENTER, TA_JUSTIFY
+from reportlab.lib import colors
 from reportlab.pdfgen import canvas
 from reportlab.pdfbase import pdfmetrics
 from reportlab.pdfbase.ttfonts import TTFont
@@ -24,6 +25,9 @@ from docx.table import Table as DocxTable
 import time
 import re
 import uuid
+import cv2
+import numpy as np
+from pyzbar import pyzbar
 
 # Supported formats - now includes PDF!
 IMAGE_FORMATS = {".jpg", ".jpeg", ".png", ".bmp", ".tiff"}
@@ -70,8 +74,52 @@ def setup():
     print("✓ OCR engine sẵn sàng (Tiếng Việt + English)")
     print("✓ Hỗ trợ PDF scan")
     print("✓ Hỗ trợ ảnh")
+    print("✓ QR Code detection")
     print()
     return converter
+
+def detect_qr_codes(image_path):
+    """
+    Detect and decode QR codes in image
+    
+    Args:
+        image_path: Path to image file (or page extracted from PDF)
+    
+    Returns:
+        List of QR code data dicts: [{"type": "QRCODE", "data": "...", "rect": (x,y,w,h)}, ...]
+    """
+    try:
+        # Read image
+        if isinstance(image_path, (str, Path)):
+            img = cv2.imread(str(image_path))
+        else:
+            # Already numpy array (from PDF page)
+            img = image_path
+        
+        if img is None:
+            return []
+        
+        # Decode QR codes
+        qr_codes = pyzbar.decode(img)
+        
+        results = []
+        for qr in qr_codes:
+            data = qr.data.decode('utf-8', errors='ignore')
+            rect = qr.rect  # (x, y, width, height)
+            qr_type = qr.type  # Usually 'QRCODE'
+            
+            results.append({
+                'type': qr_type,
+                'data': data,
+                'rect': (rect.left, rect.top, rect.width, rect.height),
+                'polygon': qr.polygon  # More precise boundary
+            })
+        
+        return results
+        
+    except Exception as e:
+        print(f"    [⚠] QR detection lỗi: {e}")
+        return []
 
 def is_pdf_scanned(pdf_path):
     """Check if PDF is scanned (image-based) or has text"""
@@ -121,8 +169,32 @@ def proc(p, c, o):
         else:
             print(f"    Type: Image")
         
+        # Detect QR codes BEFORE OCR (faster)
+        print("    Đang phát hiện QR codes...")
+        qr_codes = []
+        try:
+            if suffix in IMAGE_FORMATS:
+                # Direct image
+                qr_codes = detect_qr_codes(p)
+            elif suffix == ".pdf":
+                # Extract first page as image for QR detection
+                # (Skip for multi-page PDFs - would be too slow)
+                reader = PdfReader(p)
+                if len(reader.pages) == 1:
+                    # Convert PDF page to image for QR detection
+                    from pdf2image import pdfimage
+                    # Note: This requires poppler, skip if not available
+                    pass
+        except Exception as e:
+            print(f"    [⚠] QR detection bỏ qua: {e}")
+        
+        if qr_codes:
+            print(f"    [✓] Tìm thấy {len(qr_codes)} QR code(s)")
+            for idx, qr in enumerate(qr_codes, 1):
+                print(f"        QR {idx}: {qr['data'][:50]}...")
+        
         # Run OCR
-        print("    Đang xử lý...")
+        print("    Đang xử lý OCR...")
         t = time.time()
         result = c.convert(str(p))
         duration = time.time() - t
@@ -134,7 +206,7 @@ def proc(p, c, o):
             print("    [✗] Không trích xuất được văn bản")
             return None
         
-        # Analyze tables (Docling detecta tables automatically)
+        # Analyze tables (Docling detects tables automatically)
         tables_found = txt.count('|')  # Markdown tables use |
         has_tables = tables_found > 10  # More than 10 pipes = likely has tables
         
@@ -152,6 +224,7 @@ def proc(p, c, o):
             'time': duration,
             'type': 'pdf' if suffix == '.pdf' else 'image',
             'has_tables': has_tables,
+            'qr_codes': qr_codes,  # NEW: QR code data
             'raw_result': result  # Keep raw result for advanced processing
         }
         
@@ -429,23 +502,95 @@ def create_pdf_from_ocr(results, output_path):
             # Page header
             story.append(Paragraph(f"Page {idx}", heading_style))
             story.append(Paragraph(f"Source: {result['path'].name}", meta_style))
+            
+            # QR codes section
+            if result.get('qr_codes'):
+                story.append(Spacer(1, 0.05*inch))
+                qr_text = f"<b>QR Codes:</b> Found {len(result['qr_codes'])}"
+                story.append(Paragraph(qr_text, meta_style))
+                for qr_idx, qr in enumerate(result['qr_codes'], 1):
+                    qr_data = qr['data'][:100]  # Limit length
+                    story.append(Paragraph(f"  QR{qr_idx}: {qr_data}", meta_style))
+            
             story.append(Spacer(1, 0.1*inch))
             
-            # Content
+            # Content with improved table handling
             text = result['text']
             paragraphs = text.split('\n\n')
             
             for para in paragraphs:
-                if para.strip():
-                    # Clean text for PDF
-                    clean_text = para.strip().replace('&', '&amp;').replace('<', '&lt;').replace('>', '&gt;')
-                    
-                    # Check if heading
-                    if clean_text.startswith('#'):
-                        clean_text = clean_text.lstrip('#').strip()
-                        story.append(Paragraph(clean_text, heading_style))
-                    else:
-                        story.append(Paragraph(clean_text, normal_style))
+                if not para.strip():
+                    continue
+                
+                # Check if this is a Markdown table
+                if '|' in para and para.count('|') > 2:
+                    # This is likely a table
+                    try:
+                        lines = para.strip().split('\n')
+                        # Filter out separator lines (like |---|---|)
+                        table_lines = [line for line in lines if not all(c in '|-: ' for c in line)]
+                        
+                        if len(table_lines) > 0:
+                            # Parse table
+                            rows = []
+                            for line in table_lines:
+                                # Split by | and clean
+                                cells = [cell.strip() for cell in line.split('|')]
+                                # Remove empty first/last cells (from leading/trailing |)
+                                cells = [c for c in cells if c]
+                                if cells:
+                                    # Wrap each cell in Paragraph for Vietnamese font support
+                                    cell_paras = [Paragraph(cell, normal_style) for cell in cells]
+                                    rows.append(cell_paras)
+                            
+                            if rows:
+                                # Create ReportLab Table
+                                table = RLTable(rows)
+                                
+                                # Table styling
+                                table_style = TableStyle([
+                                    # Header row (first row)
+                                    ('BACKGROUND', (0, 0), (-1, 0), colors.HexColor('#4472C4')),
+                                    ('TEXTCOLOR', (0, 0), (-1, 0), colors.whitesmoke),
+                                    ('FONTNAME', (0, 0), (-1, 0), font_bold),
+                                    ('FONTSIZE', (0, 0), (-1, 0), 10),
+                                    ('ALIGN', (0, 0), (-1, 0), 'CENTER'),
+                                    ('VALIGN', (0, 0), (-1, 0), 'MIDDLE'),
+                                    
+                                    # All cells
+                                    ('FONTNAME', (0, 1), (-1, -1), font_name),
+                                    ('FONTSIZE', (0, 1), (-1, -1), 9),
+                                    ('ALIGN', (0, 1), (-1, -1), 'LEFT'),
+                                    ('VALIGN', (0, 1), (-1, -1), 'TOP'),
+                                    
+                                    # Borders
+                                    ('GRID', (0, 0), (-1, -1), 0.5, colors.grey),
+                                    ('BOX', (0, 0), (-1, -1), 1, colors.black),
+                                    
+                                    # Padding
+                                    ('LEFTPADDING', (0, 0), (-1, -1), 6),
+                                    ('RIGHTPADDING', (0, 0), (-1, -1), 6),
+                                    ('TOPPADDING', (0, 0), (-1, -1), 4),
+                                    ('BOTTOMPADDING', (0, 0), (-1, -1), 4),
+                                ])
+                                table.setStyle(table_style)
+                                
+                                story.append(table)
+                                story.append(Spacer(1, 0.1*inch))
+                                continue
+                    except Exception as e:
+                        # If table parsing fails, fall back to normal text
+                        print(f"    [⚠] Lỗi parse bảng cho PDF: {e}")
+                
+                # Normal text (not a table)
+                clean_text = para.strip().replace('&', '&amp;').replace('<', '&lt;').replace('>', '&gt;')
+                
+                # Check if heading
+                if clean_text.startswith('#'):
+                    clean_text = clean_text.lstrip('#').strip()
+                    story.append(Paragraph(clean_text, heading_style))
+                else:
+                    story.append(Paragraph(clean_text, normal_style))
             
             # Page break (except last)
             if idx < len(results):
@@ -453,7 +598,7 @@ def create_pdf_from_ocr(results, output_path):
         
         # Build PDF
         doc.build(story)
-        print(f"    [✓] Text PDF: {output_path.name}")
+        print(f"    [✓] Text PDF: {output_path.name} (with table formatting)")
         return output_path
         
     except Exception as e:
@@ -804,6 +949,17 @@ def main():
     tables_count = sum(1 for r in results if r.get('has_tables', False))
     if tables_count > 0:
         print(f"📊 File có bảng biểu: {tables_count}")
+    
+    # Count QR codes
+    qr_count = sum(len(r.get('qr_codes', [])) for r in results)
+    if qr_count > 0:
+        print(f"📱 Tìm thấy {qr_count} QR code(s)")
+        # Show QR data
+        for idx, r in enumerate(results, 1):
+            if r.get('qr_codes'):
+                print(f"   File {idx} ({r['path'].name}):")
+                for qr_idx, qr in enumerate(r['qr_codes'], 1):
+                    print(f"     QR{qr_idx}: {qr['data'][:60]}...")
     
     print(f"{'='*70}")
     
