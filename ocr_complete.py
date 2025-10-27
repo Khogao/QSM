@@ -20,6 +20,7 @@ from reportlab.pdfbase import pdfmetrics
 from reportlab.pdfbase.ttfonts import TTFont
 from pypdf import PdfReader, PdfWriter
 from ebooklib import epub
+from docx.table import Table as DocxTable
 import time
 import re
 import uuid
@@ -121,29 +122,37 @@ def proc(p, c, o):
             print(f"    Type: Image")
         
         # Run OCR
-        print("    Processing...")
+        print("    Đang xử lý...")
         t = time.time()
         result = c.convert(str(p))
         duration = time.time() - t
         
-        # Extract text
+        # Extract text and tables
         txt = result.document.export_to_markdown()
         
         if not txt.strip():
-            print("    [✗] No text extracted")
+            print("    [✗] Không trích xuất được văn bản")
             return None
         
-        word_count = len(txt.split())
-        print(f"    [✓] Done in {duration:.1f}s")
-        print(f"    [✓] Extracted {word_count} words")
+        # Analyze tables (Docling detecta tables automatically)
+        tables_found = txt.count('|')  # Markdown tables use |
+        has_tables = tables_found > 10  # More than 10 pipes = likely has tables
         
-        # Return result dict
+        word_count = len(txt.split())
+        print(f"    [✓] Xong trong {duration:.1f}s")
+        print(f"    [✓] Trích xuất {word_count} từ")
+        if has_tables:
+            print(f"    [✓] Phát hiện bảng biểu (Docling table detection)")
+        
+        # Return result dict with enhanced metadata
         return {
             'path': p,
             'text': txt,
             'word_count': word_count,
             'time': duration,
-            'type': 'pdf' if suffix == '.pdf' else 'image'
+            'type': 'pdf' if suffix == '.pdf' else 'image',
+            'has_tables': has_tables,
+            'raw_result': result  # Keep raw result for advanced processing
         }
         
     except Exception as e:
@@ -208,27 +217,79 @@ def create_merged_document(results, output_dir, doc_name="merged_document"):
     # Add each page
     for idx, result in enumerate(sorted_results, 1):
         # Page header
-        page_heading = doc.add_heading(f'Page {idx}', 1)
+        page_heading = doc.add_heading(f'Trang {idx}', 1)
         
         # Source info
         source = doc.add_paragraph()
-        source.add_run(f"Source: {result['path'].name}\n").italic = True
-        source.add_run(f"Words: {result['word_count']}").italic = True
+        source.add_run(f"Nguồn: {result['path'].name}\n").italic = True
+        source.add_run(f"Số từ: {result['word_count']}").italic = True
+        if result.get('has_tables'):
+            source.add_run("\n✓ Có bảng biểu").bold = True
         
         # Add separator
         doc.add_paragraph("_" * 50)
         
-        # Content
-        paragraphs = result['text'].split('\n\n')
+        # Content - improved table handling
+        text_content = result['text']
+        
+        # Split by double newline to preserve structure
+        paragraphs = text_content.split('\n\n')
+        
         for para_text in paragraphs:
-            if para_text.strip():
-                if para_text.startswith('#'):
-                    level = min(para_text.count('#', 0, 3), 2) + 1
-                    text_clean = para_text.lstrip('#').strip()
-                    doc.add_heading(text_clean, level)
-                else:
-                    p = doc.add_paragraph(para_text.strip())
-                    p.paragraph_format.line_spacing = 1.5
+            if not para_text.strip():
+                continue
+            
+            # Check if this is a Markdown table
+            if '|' in para_text and para_text.count('|') > 2:
+                # This is likely a table
+                try:
+                    lines = para_text.strip().split('\n')
+                    # Filter out separator lines (like |---|---|)
+                    table_lines = [line for line in lines if not all(c in '|-: ' for c in line)]
+                    
+                    if len(table_lines) > 0:
+                        # Parse table
+                        rows = []
+                        for line in table_lines:
+                            # Split by | and clean
+                            cells = [cell.strip() for cell in line.split('|')]
+                            # Remove empty first/last cells (from leading/trailing |)
+                            cells = [c for c in cells if c]
+                            if cells:
+                                rows.append(cells)
+                        
+                        if rows:
+                            # Create Word table
+                            num_cols = max(len(row) for row in rows)
+                            table = doc.add_table(rows=len(rows), cols=num_cols)
+                            table.style = 'Light Grid Accent 1'
+                            
+                            # Fill table
+                            for i, row_data in enumerate(rows):
+                                for j, cell_text in enumerate(row_data):
+                                    if j < num_cols:
+                                        cell = table.rows[i].cells[j]
+                                        cell.text = cell_text
+                                        # Bold first row (header)
+                                        if i == 0:
+                                            cell.paragraphs[0].runs[0].font.bold = True
+                            
+                            doc.add_paragraph()  # Space after table
+                            continue
+                except Exception as e:
+                    # If table parsing fails, fall back to normal text
+                    print(f"    [⚠] Lỗi parse bảng: {e}")
+            
+            # Normal text (not a table)
+            if para_text.startswith('#'):
+                # Heading
+                level = min(para_text.count('#', 0, 3), 2) + 1
+                text_clean = para_text.lstrip('#').strip()
+                doc.add_heading(text_clean, level)
+            else:
+                # Normal paragraph
+                p = doc.add_paragraph(para_text.strip())
+                p.paragraph_format.line_spacing = 1.5
         
         # Page break (except last page)
         if idx < len(sorted_results):
@@ -401,10 +462,128 @@ def create_pdf_from_ocr(results, output_path):
         traceback.print_exc()
         return None
 
+def extract_tables_to_excel(results, output_path):
+    """
+    [PHASE 2 FEATURE] Extract tables from OCR results to Excel
+    
+    This function extracts all tables detected by Docling and exports them
+    to a formatted Excel file. Perfect for Vietnamese invoice OCR!
+    
+    Args:
+        results: List of OCR result dicts
+        output_path: Path to save Excel file
+    
+    Returns:
+        Path to Excel file or None if failed
+    """
+    try:
+        # Check if openpyxl is installed (Phase 2 dependency)
+        try:
+            import openpyxl
+            from openpyxl.styles import Font, Alignment, Border, Side, PatternFill
+        except ImportError:
+            print("    [!] Excel export cần cài openpyxl:")
+            print("    pip install openpyxl")
+            return None
+        
+        print(f"\n[*] Trích xuất bảng biểu ra Excel...")
+        
+        # Create workbook
+        wb = openpyxl.Workbook()
+        wb.remove(wb.active)  # Remove default sheet
+        
+        table_count = 0
+        
+        # Process each result
+        for idx, result in enumerate(results, 1):
+            text = result['text']
+            
+            # Find all tables in markdown
+            paragraphs = text.split('\n\n')
+            page_table_count = 0
+            
+            for para in paragraphs:
+                if '|' not in para or para.count('|') < 3:
+                    continue
+                
+                # Parse table
+                lines = para.strip().split('\n')
+                table_lines = [line for line in lines if not all(c in '|-: ' for c in line)]
+                
+                if len(table_lines) < 2:  # Need at least header + 1 row
+                    continue
+                
+                # Parse rows
+                rows = []
+                for line in table_lines:
+                    cells = [cell.strip() for cell in line.split('|')]
+                    cells = [c for c in cells if c]
+                    if cells:
+                        rows.append(cells)
+                
+                if not rows:
+                    continue
+                
+                # Create worksheet for this table
+                page_table_count += 1
+                table_count += 1
+                sheet_name = f"Trang{idx}_Bảng{page_table_count}"[:31]  # Excel limit
+                ws = wb.create_sheet(title=sheet_name)
+                
+                # Write data
+                for row_idx, row_data in enumerate(rows, 1):
+                    for col_idx, cell_value in enumerate(row_data, 1):
+                        cell = ws.cell(row=row_idx, column=col_idx, value=cell_value)
+                        
+                        # Format header row
+                        if row_idx == 1:
+                            cell.font = Font(bold=True, color="FFFFFF")
+                            cell.fill = PatternFill(start_color="4472C4", end_color="4472C4", fill_type="solid")
+                            cell.alignment = Alignment(horizontal='center', vertical='center')
+                        else:
+                            cell.alignment = Alignment(horizontal='left', vertical='center')
+                        
+                        # Add borders
+                        thin_border = Border(
+                            left=Side(style='thin'),
+                            right=Side(style='thin'),
+                            top=Side(style='thin'),
+                            bottom=Side(style='thin')
+                        )
+                        cell.border = thin_border
+                
+                # Auto-adjust column width
+                for column in ws.columns:
+                    max_length = 0
+                    column_letter = column[0].column_letter
+                    for cell in column:
+                        try:
+                            if len(str(cell.value)) > max_length:
+                                max_length = len(str(cell.value))
+                        except:
+                            pass
+                    adjusted_width = min(max_length + 2, 50)  # Max 50 chars
+                    ws.column_dimensions[column_letter].width = adjusted_width
+        
+        if table_count == 0:
+            print("    [!] Không tìm thấy bảng biểu nào")
+            return None
+        
+        # Save workbook
+        wb.save(output_path)
+        print(f"    [✓] Excel: {output_path.name} ({table_count} bảng)")
+        return output_path
+        
+    except Exception as e:
+        print(f"    [✗] Lỗi xuất Excel: {e}")
+        import traceback
+        traceback.print_exc()
+        return None
+
 def create_epub(results, output_path, book_title="OCR Document", author="QSM OCR"):
     """Create EPUB ebook from OCR results"""
     try:
-        print(f"\n[*] Creating EPUB ebook...")
+        print(f"\n[*] Tạo EPUB ebook...")
         
         # Create book
         book = epub.EpubBook()
@@ -615,32 +794,38 @@ def main():
     
     # Summary
     print(f"\n{'='*70}")
-    print(f"SUMMARY")
+    print(f"TỔNG KẾT")
     print(f"{'='*70}")
-    print(f"Processed: {len(results)}/{len(files)} files")
-    print(f"Total time: {total_time:.1f}s")
-    print(f"Total words: {sum(r['word_count'] for r in results)}")
+    print(f"Đã xử lý: {len(results)}/{len(files)} file")
+    print(f"Tổng thời gian: {total_time:.1f}s")
+    print(f"Tổng số từ: {sum(r['word_count'] for r in results)}")
+    
+    # Count tables
+    tables_count = sum(1 for r in results if r.get('has_tables', False))
+    if tables_count > 0:
+        print(f"📊 File có bảng biểu: {tables_count}")
+    
     print(f"{'='*70}")
     
     if not results:
-        print("\n[!] No successful OCR results")
-        input("Press Enter to exit...")
+        print("\n[!] Không có kết quả OCR thành công")
+        input("Nhấn Enter để thoát...")
         return
     
     # Create merged document
-    print("\nCreate merged document? (y/n): ", end='')
+    print("\nTạo tài liệu gộp? (y/n): ", end='')
     choice = input().strip().lower()
     
-    if choice in ['y', 'yes', '']:
+    if choice in ['y', 'yes', 'có', '']:
         # Get document name
-        print("Document name (default: merged_document): ", end='')
+        print("Tên tài liệu (mặc định: merged_document): ", end='')
         doc_name = input().strip() or "merged_document"
         
         # Create Word and Markdown
         create_merged_document(results, output_dir, doc_name)
         
         # Ask for PDF options
-        print("\nCreate PDF? (image/text/both/no): ", end='')
+        print("\nTạo PDF? (image/text/both/no): ", end='')
         pdf_choice = input().strip().lower()
         
         if pdf_choice in ['image', 'i', 'both', 'b']:
@@ -654,25 +839,35 @@ def main():
             pdf_text = output_dir / f"{doc_name}_text.pdf"
             create_pdf_from_ocr(results, pdf_text)
         
+        # Ask for Excel export (PHASE 2 FEATURE - for invoices/tables)
+        has_any_tables = any(r.get('has_tables', False) for r in results)
+        if has_any_tables:
+            print("\n💡 Phát hiện bảng biểu! Xuất ra Excel? (y/n): ", end='')
+            excel_choice = input().strip().lower()
+            
+            if excel_choice in ['y', 'yes', 'có', '']:
+                excel_file = output_dir / f"{doc_name}_tables.xlsx"
+                extract_tables_to_excel(results, excel_file)
+        
         # Ask for EPUB
-        print("\nCreate EPUB ebook? (y/n): ", end='')
+        print("\nTạo EPUB ebook? (y/n): ", end='')
         epub_choice = input().strip().lower()
         
-        if epub_choice in ['y', 'yes', '']:
-            print("Book title (default: OCR Document): ", end='')
+        if epub_choice in ['y', 'yes', 'có', '']:
+            print("Tên sách (mặc định: OCR Document): ", end='')
             book_title = input().strip() or "OCR Document"
-            print("Author (default: QSM OCR): ", end='')
+            print("Tác giả (mặc định: QSM OCR): ", end='')
             author = input().strip() or "QSM OCR"
             
             epub_file = output_dir / f"{doc_name}.epub"
             create_epub(results, epub_file, book_title, author)
     
     # Save individual files
-    print(f"\nSave individual files? (y/n): ", end='')
+    print(f"\nLưu từng file riêng lẻ? (y/n): ", end='')
     save_individual = input().strip().lower()
     
-    if save_individual in ['y', 'yes', '']:
-        print(f"\n[*] Saving individual files...")
+    if save_individual in ['y', 'yes', 'có', '']:
+        print(f"\n[*] Đang lưu từng file...")
         for result in results:
             p = result['path']
             txt = result['text']
@@ -683,22 +878,22 @@ def main():
             
             # Individual Word
             doc = Document()
-            doc.add_heading(f"Page - {p.stem}", 0)
-            doc.add_paragraph(f"Source: {p.name}").italic = True
+            doc.add_heading(f"Trang - {p.stem}", 0)
+            doc.add_paragraph(f"Nguồn: {p.name}").italic = True
             for par in txt.split("\n\n"):
                 if par.strip():
                     doc.add_paragraph(par.strip())
             dx = output_dir / f"{p.stem}_page.docx"
             doc.save(str(dx))
         
-        print(f"    [✓] {len(results)} individual files saved")
+        print(f"    [✓] {len(results)} file đã lưu")
     
     # Done
     print(f"\n{'='*70}")
-    print(f"✓ ALL DONE!")
-    print(f"Output folder: {output_dir}")
+    print(f"✓ HOÀN TẤT!")
+    print(f"Thư mục output: {output_dir}")
     print(f"{'='*70}\n")
-    input("Press Enter to exit...")
+    input("Nhấn Enter để thoát...")
 
 if __name__ == "__main__":
     try:
