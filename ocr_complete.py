@@ -27,7 +27,15 @@ import re
 import uuid
 import cv2
 import numpy as np
-from pyzbar import pyzbar
+
+# Docling IBM Models for advanced figure detection
+try:
+    from docling_ibm_models.document_figures.document_figure_classifier_predictor import DocumentFigureClassifierPredictor
+    DOCLING_FIGURES_AVAILABLE = True
+except ImportError:
+    DOCLING_FIGURES_AVAILABLE = False
+    print("[⚠] Warning: docling-ibm-models not installed. Advanced figure detection disabled.")
+    print("    Install: pip install 'docling-ibm-models[opencv-python]>=3.10.1'")
 
 # Supported formats - now includes PDF!
 IMAGE_FORMATS = {".jpg", ".jpeg", ".png", ".bmp", ".tiff"}
@@ -36,9 +44,15 @@ ALL_FORMATS = IMAGE_FORMATS | PDF_FORMAT
 
 def header():
     print("="*70)
-    print("🖼️  QSM - OCR Chuyển Ảnh/PDF Sang Word")
+    print("🖼️  QSM OCR v3.0 - Vietnamese Document Intelligence")
     print("="*70)
-    print("Hỗ trợ: JPG, PNG, BMP, TIFF, PDF (scan)")
+    print("✨ NEW v3.0: Figure detection (QR, barcode, signature, stamp, charts)")
+    print("✨ NEW v3.0: Auto-detect document type (invoice, contract, blueprint...)")
+    print("✨ NEW v3.0: Smart filename suggestions")
+    print("="*70)
+    print("📄 Formats: JPG, PNG, BMP, TIFF, PDF (scan)")
+    print("🌍 Languages: Vietnamese + English")
+    print("📊 Features: Tables, Figures, 6 export formats")
     print("="*70)
 
 def setup():
@@ -72,23 +86,38 @@ def setup():
     )
     
     print("✓ OCR engine sẵn sàng (Tiếng Việt + English)")
-    print("✓ Hỗ trợ PDF scan")
-    print("✓ Hỗ trợ ảnh")
-    print("✓ QR Code detection")
+    print("✓ PDF scan support")
+    print("✓ Image support")
+    print("✓ v3.0: 16 figure types detection (QR, barcode, signature, stamp, charts...)")
+    print("✓ v3.0: Document type auto-detection (invoice, contract, blueprint...)")
+    print("✓ v3.0: Smart filename suggestions")
     print()
     return converter
 
-def detect_qr_codes(image_path):
+def detect_document_figures(image_path):
     """
-    Detect and decode QR codes in image
+    Detect document figures using Docling IBM Models (v3.0)
+    
+    Detects 16 types: QR code, barcode, signature, stamp, charts (bar, line, pie, flow), 
+    chemistry structures, icons, logos, maps, screenshots, remote sensing images
     
     Args:
-        image_path: Path to image file (or page extracted from PDF)
+        image_path: Path to image file (or numpy array from PDF page)
     
     Returns:
-        List of QR code data dicts: [{"type": "QRCODE", "data": "...", "rect": (x,y,w,h)}, ...]
+        List of figure dicts: [{"type": "qr_code", "confidence": 0.95, "rect": (x,y,w,h)}, ...]
     """
+    if not DOCLING_FIGURES_AVAILABLE:
+        # Fallback: No figure detection if docling-ibm-models not installed
+        return []
+    
     try:
+        # Initialize classifier (singleton pattern - only load once)
+        if not hasattr(detect_document_figures, '_predictor'):
+            detect_document_figures._predictor = DocumentFigureClassifierPredictor()
+        
+        predictor = detect_document_figures._predictor
+        
         # Read image
         if isinstance(image_path, (str, Path)):
             img = cv2.imread(str(image_path))
@@ -99,27 +128,287 @@ def detect_qr_codes(image_path):
         if img is None:
             return []
         
-        # Decode QR codes
-        qr_codes = pyzbar.decode(img)
+        # Convert to PIL Image for predictor
+        from PIL import Image
+        if isinstance(img, np.ndarray):
+            # OpenCV uses BGR, PIL uses RGB
+            img_rgb = cv2.cvtColor(img, cv2.COLOR_BGR2RGB)
+            pil_img = Image.fromarray(img_rgb)
+        else:
+            pil_img = Image.open(str(image_path))
+        
+        # Run prediction
+        predictions = predictor.predict([pil_img])
         
         results = []
-        for qr in qr_codes:
-            data = qr.data.decode('utf-8', errors='ignore')
-            rect = qr.rect  # (x, y, width, height)
-            qr_type = qr.type  # Usually 'QRCODE'
-            
-            results.append({
-                'type': qr_type,
-                'data': data,
-                'rect': (rect.left, rect.top, rect.width, rect.height),
-                'polygon': qr.polygon  # More precise boundary
-            })
+        for pred_list in predictions:
+            for class_name, confidence in pred_list:
+                # Filter low confidence (< 0.5)
+                if confidence < 0.5:
+                    continue
+                
+                results.append({
+                    'type': class_name,  # e.g. "qr_code", "signature", "stamp", "bar_code"
+                    'confidence': confidence,
+                    'rect': None,  # DocumentFigureClassifier doesn't provide bounding boxes
+                })
         
         return results
         
     except Exception as e:
-        print(f"    [⚠] QR detection lỗi: {e}")
+        print(f"    [⚠] Figure detection error: {e}")
         return []
+
+def detect_document_type(ocr_text, figures_detected):
+    """
+    Auto-detect document type based on OCR text and detected figures (v3.0)
+    
+    Document types:
+    - invoice (hóa đơn): Has VAT, tax code, QR, signature, stamp
+    - contract (hợp đồng): Has parties, signature, stamp
+    - blueprint (bản vẽ): Has charts, scale indicators
+    - certificate (chứng chỉ): Has signature, stamp, certification keywords
+    - receipt (biên lai): Similar to invoice but simpler
+    - other: Unknown/generic document
+    
+    Args:
+        ocr_text: Extracted text from OCR
+        figures_detected: List of detected figures from detect_document_figures()
+    
+    Returns:
+        (doc_type: str, confidence: float, keywords_found: list)
+    """
+    text_lower = ocr_text.lower()
+    
+    # Extract figure types
+    figure_types = {fig['type'] for fig in figures_detected}
+    
+    # Define detection rules
+    scores = {
+        'invoice': 0.0,
+        'contract': 0.0,
+        'blueprint': 0.0,
+        'certificate': 0.0,
+        'receipt': 0.0,
+        'other': 0.0
+    }
+    
+    keywords_found = []
+    
+    # Invoice detection
+    invoice_keywords = [
+        ('hóa đơn', 0.3), ('hoá đơn', 0.3), ('invoice', 0.3),
+        ('vat', 0.2), ('gtgt', 0.2), ('thuế', 0.15),
+        ('mst', 0.15), ('mã số thuế', 0.15), ('tax code', 0.15),
+        ('thành tiền', 0.1), ('tổng cộng', 0.1), ('total', 0.1)
+    ]
+    for keyword, weight in invoice_keywords:
+        if keyword in text_lower:
+            scores['invoice'] += weight
+            keywords_found.append(keyword)
+    
+    if 'qr_code' in figure_types:
+        scores['invoice'] += 0.25
+        keywords_found.append('QR code')
+    if 'signature' in figure_types:
+        scores['invoice'] += 0.15
+        keywords_found.append('signature')
+    if 'stamp' in figure_types:
+        scores['invoice'] += 0.15
+        keywords_found.append('stamp')
+    if 'bar_code' in figure_types:
+        scores['invoice'] += 0.1
+        keywords_found.append('barcode')
+    
+    # Contract detection
+    contract_keywords = [
+        ('hợp đồng', 0.4), ('hop dong', 0.4), ('contract', 0.4),
+        ('bên a', 0.2), ('bên b', 0.2), ('party a', 0.2), ('party b', 0.2),
+        ('điều khoản', 0.15), ('terms', 0.15),
+        ('chữ ký', 0.1), ('signature', 0.1)
+    ]
+    for keyword, weight in contract_keywords:
+        if keyword in text_lower:
+            scores['contract'] += weight
+            keywords_found.append(keyword)
+    
+    if 'signature' in figure_types:
+        scores['contract'] += 0.3
+    if 'stamp' in figure_types:
+        scores['contract'] += 0.2
+    
+    # Blueprint detection
+    blueprint_keywords = [
+        ('bản vẽ', 0.4), ('ban ve', 0.4), ('blueprint', 0.4),
+        ('tỷ lệ', 0.2), ('scale', 0.2), ('ty le', 0.2),
+        ('kích thước', 0.15), ('dimension', 0.15),
+        ('mặt cắt', 0.1), ('section', 0.1)
+    ]
+    for keyword, weight in blueprint_keywords:
+        if keyword in text_lower:
+            scores['blueprint'] += weight
+            keywords_found.append(keyword)
+    
+    chart_types = {'bar_chart', 'line_chart', 'pie_chart', 'flow_chart'}
+    if chart_types & figure_types:
+        scores['blueprint'] += 0.3
+        keywords_found.append('charts')
+    
+    # Certificate detection
+    cert_keywords = [
+        ('chứng nhận', 0.4), ('chung nhan', 0.4), ('certificate', 0.4),
+        ('giấy chứng nhận', 0.4), ('certification', 0.4),
+        ('cấp cho', 0.15), ('issued to', 0.15),
+        ('có giá trị', 0.1), ('valid until', 0.1)
+    ]
+    for keyword, weight in cert_keywords:
+        if keyword in text_lower:
+            scores['certificate'] += weight
+            keywords_found.append(keyword)
+    
+    if 'signature' in figure_types:
+        scores['certificate'] += 0.25
+    if 'stamp' in figure_types:
+        scores['certificate'] += 0.25
+    
+    # Receipt detection
+    receipt_keywords = [
+        ('biên lai', 0.4), ('bien lai', 0.4), ('receipt', 0.4),
+        ('phiếu thu', 0.3), ('phieu thu', 0.3),
+        ('đã nhận', 0.15), ('da nhan', 0.15), ('received', 0.15)
+    ]
+    for keyword, weight in receipt_keywords:
+        if keyword in text_lower:
+            scores['receipt'] += weight
+            keywords_found.append(keyword)
+    
+    # Find best match
+    doc_type = max(scores, key=scores.get)
+    confidence = min(scores[doc_type], 1.0)  # Cap at 1.0
+    
+    # If confidence too low, mark as "other"
+    if confidence < 0.3:
+        doc_type = 'other'
+        confidence = 0.5
+    
+    return doc_type, confidence, keywords_found
+
+def suggest_filename(doc_type, ocr_text, figures_detected, original_filename):
+    """
+    Smart filename suggestions based on document type (v3.0)
+    
+    Args:
+        doc_type: Document type from detect_document_type()
+        ocr_text: Extracted OCR text
+        figures_detected: List of detected figures
+        original_filename: Original file name (fallback)
+    
+    Returns:
+        Suggested filename (sanitized, ready to use)
+    """
+    import re
+    from datetime import datetime
+    
+    # Extract QR data if available
+    qr_data = None
+    for fig in figures_detected:
+        if fig['type'] == 'qr_code' and 'data' in fig:
+            qr_data = fig.get('data', '')[:50]  # First 50 chars
+            break
+    
+    # Sanitize function
+    def sanitize(text):
+        # Remove special chars, keep Vietnamese, alphanumeric, spaces, dashes
+        text = re.sub(r'[^\w\s\-àáạảãâầấậẩẫăằắặẳẵèéẹẻẽêềếệểễìíịỉĩòóọỏõôồốộổỗơờớợởỡùúụủũưừứựửữỳýỵỷỹđ]', '', text)
+        text = re.sub(r'\s+', '_', text)  # Replace spaces with underscores
+        text = text.strip('_')
+        return text[:50]  # Max 50 chars
+    
+    # Extract date (YYYY-MM-DD, DD/MM/YYYY, etc.)
+    date_match = re.search(r'(\d{4}[-/\.]\d{1,2}[-/\.]\d{1,2})|(\d{1,2}[-/\.]\d{1,2}[-/\.]\d{4})', ocr_text)
+    date_str = date_match.group(0).replace('/', '-').replace('.', '-') if date_match else datetime.now().strftime('%Y-%m-%d')
+    
+    suggested = None
+    
+    if doc_type == 'invoice':
+        # Extract: invoice number, company name
+        invoice_num = re.search(r'(số|so|no\.?|#)\s*[:.]?\s*(\w+[-/]?\d+)', ocr_text.lower())
+        company = re.search(r'(công ty|cong ty|company)\s+(.{5,30})', ocr_text.lower())
+        
+        parts = ['Invoice']
+        if invoice_num:
+            parts.append(sanitize(invoice_num.group(2)))
+        if company:
+            parts.append(sanitize(company.group(2)))
+        parts.append(date_str)
+        
+        suggested = '_'.join(parts)
+    
+    elif doc_type == 'contract':
+        # Extract: contract number, parties
+        contract_num = re.search(r'(hợp đồng|hop dong|contract)\s+số\s*[:.]?\s*(\w+[-/]?\d+)', ocr_text.lower())
+        party_a = re.search(r'bên a\s*[:.]?\s*(.{5,30})', ocr_text.lower())
+        
+        parts = ['Contract']
+        if contract_num:
+            parts.append(sanitize(contract_num.group(2)))
+        if party_a:
+            parts.append(sanitize(party_a.group(1)))
+        parts.append(date_str)
+        
+        suggested = '_'.join(parts)
+    
+    elif doc_type == 'blueprint':
+        # Extract: project name, scale, sheet number
+        project = re.search(r'(dự án|du an|project)\s*[:.]?\s*(.{5,30})', ocr_text.lower())
+        scale = re.search(r'(tỷ lệ|ty le|scale)\s*[:.]?\s*([\d:]+)', ocr_text.lower())
+        sheet = re.search(r'(tờ|sheet|page)\s*[:.]?\s*(\d+)', ocr_text.lower())
+        
+        parts = ['Blueprint']
+        if project:
+            parts.append(sanitize(project.group(2)))
+        if scale:
+            parts.append(f"Scale_{scale.group(2)}")
+        if sheet:
+            parts.append(f"Sheet_{sheet.group(2)}")
+        
+        suggested = '_'.join(parts)
+    
+    elif doc_type == 'certificate':
+        # Extract: certificate type, recipient
+        cert_type = re.search(r'(chứng nhận|chung nhan|certificate)\s+(.{5,30})', ocr_text.lower())
+        recipient = re.search(r'(cấp cho|cap cho|issued to)\s*[:.]?\s*(.{5,30})', ocr_text.lower())
+        
+        parts = ['Certificate']
+        if cert_type:
+            parts.append(sanitize(cert_type.group(2)))
+        if recipient:
+            parts.append(sanitize(recipient.group(1)))
+        parts.append(date_str)
+        
+        suggested = '_'.join(parts)
+    
+    elif doc_type == 'receipt':
+        # Extract: receipt number
+        receipt_num = re.search(r'(biên lai|bien lai|receipt)\s+số\s*[:.]?\s*(\w+[-/]?\d+)', ocr_text.lower())
+        
+        parts = ['Receipt']
+        if receipt_num:
+            parts.append(sanitize(receipt_num.group(2)))
+        parts.append(date_str)
+        
+        suggested = '_'.join(parts)
+    
+    else:  # other
+        # Use original filename + date
+        original_clean = sanitize(Path(original_filename).stem)
+        suggested = f"{original_clean}_{date_str}"
+    
+    # Fallback if extraction failed
+    if not suggested or suggested == doc_type:
+        suggested = f"{doc_type}_{date_str}_{sanitize(original_filename)}"
+    
+    return suggested
 
 def is_pdf_scanned(pdf_path):
     """Check if PDF is scanned (image-based) or has text"""
@@ -169,29 +458,18 @@ def proc(p, c, o):
         else:
             print(f"    Type: Image")
         
-        # Detect QR codes BEFORE OCR (faster)
-        print("    Đang phát hiện QR codes...")
-        qr_codes = []
+        # Detect document figures (QR, barcode, signature, stamp, charts) - v3.0
+        print("    🔍 Đang phát hiện figures (QR, signature, stamp, charts)...")
+        figures = []
         try:
-            if suffix in IMAGE_FORMATS:
-                # Direct image
-                qr_codes = detect_qr_codes(p)
-            elif suffix == ".pdf":
-                # Extract first page as image for QR detection
-                # (Skip for multi-page PDFs - would be too slow)
-                reader = PdfReader(p)
-                if len(reader.pages) == 1:
-                    # Convert PDF page to image for QR detection
-                    from pdf2image import pdfimage
-                    # Note: This requires poppler, skip if not available
-                    pass
+            figures = detect_document_figures(p)
         except Exception as e:
-            print(f"    [⚠] QR detection bỏ qua: {e}")
+            print(f"    [⚠] Figure detection bỏ qua: {e}")
         
-        if qr_codes:
-            print(f"    [✓] Tìm thấy {len(qr_codes)} QR code(s)")
-            for idx, qr in enumerate(qr_codes, 1):
-                print(f"        QR {idx}: {qr['data'][:50]}...")
+        if figures:
+            print(f"    [✓] Tìm thấy {len(figures)} figure(s)")
+            for idx, fig in enumerate(figures, 1):
+                print(f"        {idx}. {fig['type']} (confidence: {fig['confidence']:.2f})")
         
         # Run OCR
         print("    Đang xử lý OCR...")
@@ -216,7 +494,17 @@ def proc(p, c, o):
         if has_tables:
             print(f"    [✓] Phát hiện bảng biểu (Docling table detection)")
         
-        # Return result dict with enhanced metadata
+        # v3.0: Auto-detect document type
+        doc_type, doc_confidence, doc_keywords = detect_document_type(txt, figures)
+        print(f"    [✓] Document type: {doc_type.upper()} (confidence: {doc_confidence:.2f})")
+        if doc_keywords:
+            print(f"        Keywords: {', '.join(doc_keywords[:5])}")
+        
+        # v3.0: Suggest filename
+        suggested_name = suggest_filename(doc_type, txt, figures, p.name)
+        print(f"    [💡] Suggested filename: {suggested_name}")
+        
+        # Return result dict with enhanced metadata (v3.0)
         return {
             'path': p,
             'text': txt,
@@ -224,7 +512,11 @@ def proc(p, c, o):
             'time': duration,
             'type': 'pdf' if suffix == '.pdf' else 'image',
             'has_tables': has_tables,
-            'qr_codes': qr_codes,  # NEW: QR code data
+            'figures': figures,  # v3.0: Detected figures (QR, signature, stamp, charts...)
+            'document_type': doc_type,  # v3.0: Auto-detected document type
+            'document_confidence': doc_confidence,  # v3.0: Document type confidence
+            'document_keywords': doc_keywords,  # v3.0: Keywords found
+            'suggested_filename': suggested_name,  # v3.0: Smart filename suggestion
             'raw_result': result  # Keep raw result for advanced processing
         }
         
