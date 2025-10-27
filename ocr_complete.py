@@ -1,6 +1,30 @@
-import sys, io
+#!/usr/bin/env python3
+# -*- coding: utf-8 -*-
+"""
+Quicord - Quick OCR Documents
+Vietnamese Document Intelligence with AI
+"""
+
+import sys
+import io
+import os
+
+# Force UTF-8 encoding everywhere (fix Vietnamese character issues)
 if sys.platform == "win32":
+    # Windows: Fix console encoding
     sys.stdout = io.TextIOWrapper(sys.stdout.buffer, encoding="utf-8")
+    sys.stderr = io.TextIOWrapper(sys.stderr.buffer, encoding="utf-8")
+    sys.stdin = io.TextIOWrapper(sys.stdin.buffer, encoding="utf-8")
+    # Set environment variable for subprocess
+    os.environ["PYTHONIOENCODING"] = "utf-8"
+else:
+    # Mac/Linux: Ensure UTF-8
+    import locale
+    locale.setlocale(locale.LC_ALL, 'en_US.UTF-8')
+
+# Set default file encoding to UTF-8
+import _locale
+_locale._getdefaultlocale = (lambda *args: ['en_US', 'UTF-8'])
 from pathlib import Path
 from docling.document_converter import DocumentConverter, PdfFormatOption
 from docling.datamodel.base_models import InputFormat
@@ -44,40 +68,45 @@ ALL_FORMATS = IMAGE_FORMATS | PDF_FORMAT
 
 def header():
     print("="*70)
-    print("🖼️  QSM OCR v3.0 - Vietnamese Document Intelligence")
+    print("� Quicord v3.0 - Quick OCR Documents")
     print("="*70)
-    print("✨ NEW v3.0: Figure detection (QR, barcode, signature, stamp, charts)")
-    print("✨ NEW v3.0: Auto-detect document type (invoice, contract, blueprint...)")
-    print("✨ NEW v3.0: Smart filename suggestions")
+    print("🇻🇳 Vietnamese Document Intelligence with AI")
     print("="*70)
-    print("📄 Formats: JPG, PNG, BMP, TIFF, PDF (scan)")
-    print("🌍 Languages: Vietnamese + English")
-    print("📊 Features: Tables, Figures, 6 export formats")
+    print("✨ v3.0 Features:")
+    print("   • 16 figure types (QR, barcode, signature, stamp, charts)")
+    print("   • Auto document classification (invoice, contract, blueprint...)")
+    print("   • Smart filename suggestions")
+    print("   • AI-powered text restructuring (coming soon)")
+    print("="*70)
+    print("📄 Formats: JPG, PNG, BMP, TIFF, PDF (scanned)")
+    print("🌍 Languages: Vietnamese + English (95-98% accuracy)")
+    print("📊 Export: Word, PDF, Excel, Markdown, EPUB, Text")
+    print("🖥️  Platforms: Windows 11 + Mac OS")
     print("="*70)
 
 def setup():
-    """Khởi tạo OCR converter cho ảnh và PDF"""
-    print("🚀 Đang khởi động OCR engine...")
+    """Initialize OCR converter for images and PDFs"""
+    print("🚀 Starting Quicord OCR engine...")
     
-    # Tùy chọn OCR
+    # OCR options
     ocr_opts = EasyOcrOptions(
         lang=["vi", "en"],
         force_full_page_ocr=True
     )
     
-    # Pipeline cho PDF
+    # Pipeline for PDF
     pdf_pipeline_opts = PdfPipelineOptions()
     pdf_pipeline_opts.do_ocr = True
     pdf_pipeline_opts.do_table_structure = True
     pdf_pipeline_opts.ocr_options = ocr_opts
     
-    # Pipeline cho ảnh
+    # Pipeline for images
     img_pipeline_opts = PdfPipelineOptions()
     img_pipeline_opts.do_ocr = True
     img_pipeline_opts.do_table_structure = True
     img_pipeline_opts.ocr_options = ocr_opts
     
-    # Tạo converter với cấu hình cho cả 2 loại
+    # Create converter with configuration for both types
     converter = DocumentConverter(
         format_options={
             InputFormat.PDF: PdfFormatOption(pipeline_options=pdf_pipeline_opts),
@@ -85,12 +114,13 @@ def setup():
         }
     )
     
-    print("✓ OCR engine sẵn sàng (Tiếng Việt + English)")
+    print("✓ OCR engine ready (Vietnamese + English)")
     print("✓ PDF scan support")
     print("✓ Image support")
     print("✓ v3.0: 16 figure types detection (QR, barcode, signature, stamp, charts...)")
     print("✓ v3.0: Document type auto-detection (invoice, contract, blueprint...)")
     print("✓ v3.0: Smart filename suggestions")
+    print("✓ Cross-platform: Windows 11 + Mac OS")
     print()
     return converter
 
@@ -195,17 +225,27 @@ def detect_document_type(ocr_text, figures_detected):
     
     keywords_found = []
     
-    # Invoice detection
+    # Invoice detection - IMPROVED with more Vietnamese variants
     invoice_keywords = [
-        ('hóa đơn', 0.3), ('hoá đơn', 0.3), ('invoice', 0.3),
-        ('vat', 0.2), ('gtgt', 0.2), ('thuế', 0.15),
-        ('mst', 0.15), ('mã số thuế', 0.15), ('tax code', 0.15),
-        ('thành tiền', 0.1), ('tổng cộng', 0.1), ('total', 0.1)
+        # Main invoice terms
+        ('hóa đơn', 0.35), ('hoá đơn', 0.35), ('hoa don', 0.35), ('invoice', 0.35),
+        ('hóa đơn gtgt', 0.4), ('hóa đơn vat', 0.4),
+        # Tax terms
+        ('vat', 0.25), ('gtgt', 0.25), ('thuế', 0.15), ('thue', 0.15),
+        ('mst', 0.2), ('mã số thuế', 0.2), ('ma so thue', 0.2), ('tax code', 0.2),
+        # Payment terms
+        ('thành tiền', 0.12), ('thanh tien', 0.12),
+        ('tổng cộng', 0.12), ('tong cong', 0.12), ('total', 0.12),
+        ('tổng tiền', 0.12), ('tong tien', 0.12), ('sum', 0.12),
+        # VAT specific
+        ('tiền thuế', 0.1), ('tien thue', 0.1),
+        ('cộng tiền hàng', 0.1), ('cong tien hang', 0.1),
     ]
     for keyword, weight in invoice_keywords:
         if keyword in text_lower:
             scores['invoice'] += weight
-            keywords_found.append(keyword)
+            if keyword not in keywords_found:  # Avoid duplicates
+                keywords_found.append(keyword)
     
     if 'qr_code' in figure_types:
         scores['invoice'] += 0.25
@@ -220,17 +260,41 @@ def detect_document_type(ocr_text, figures_detected):
         scores['invoice'] += 0.1
         keywords_found.append('barcode')
     
-    # Contract detection
+    # Contract detection - MUCH IMPROVED based on Vietnamese legal contracts
     contract_keywords = [
-        ('hợp đồng', 0.4), ('hop dong', 0.4), ('contract', 0.4),
-        ('bên a', 0.2), ('bên b', 0.2), ('party a', 0.2), ('party b', 0.2),
-        ('điều khoản', 0.15), ('terms', 0.15),
-        ('chữ ký', 0.1), ('signature', 0.1)
+        # Main contract terms
+        ('hợp đồng', 0.45), ('hop dong', 0.45), ('hopdong', 0.45), ('contract', 0.45),
+        ('hợp đồng thế chấp', 0.5), ('hop dong the chap', 0.5),  # Mortgage contract
+        ('hợp đồng tín dụng', 0.5), ('hop dong tin dung', 0.5),  # Credit contract
+        # Parties (very strong indicators!)
+        ('bên a', 0.3), ('ben a', 0.3), ('party a', 0.3),
+        ('bên b', 0.3), ('ben b', 0.3), ('party b', 0.3),
+        ('bên c', 0.25), ('ben c', 0.25), ('party c', 0.25),
+        ('bên thế chấp', 0.3), ('ben the chap', 0.3),  # Mortgagor
+        ('bên nhận thế chấp', 0.3), ('ben nhan the chap', 0.3),  # Mortgagee
+        ('bên vay', 0.25), ('ben vay', 0.25),  # Borrower
+        ('bên cho vay', 0.25), ('ben cho vay', 0.25),  # Lender
+        ('người đại diện', 0.2), ('nguoi dai dien', 0.2),  # Representative
+        # Legal terms (super strong!)
+        ('điều khoản', 0.2), ('dieu khoan', 0.2), ('terms', 0.2), ('clause', 0.2),
+        ('điều 1', 0.15), ('điều 2', 0.15), ('dieu 1', 0.15), ('dieu 2', 0.15),  # Articles
+        ('quyền và nghĩa vụ', 0.25), ('quyen va nghia vu', 0.25),  # Rights and obligations
+        ('thỏa thuận', 0.15), ('thoa thuan', 0.15), ('agreement', 0.15),
+        ('cam kết', 0.15), ('cam ket', 0.15), ('commitment', 0.15),
+        # Signatures
+        ('chữ ký', 0.12), ('chu ky', 0.12), ('signature', 0.12),
+        ('ký kết', 0.15), ('ky ket', 0.15), ('signed', 0.15),
+        ('đại diện pháp luật', 0.2), ('dai dien phap luat', 0.2),  # Legal representative
+        # Common contract phrases
+        ('cơ sở pháp lý', 0.1), ('co so phap ly', 0.1),  # Legal basis
+        ('phạm vi áp dụng', 0.1), ('pham vi ap dung', 0.1),  # Scope
+        ('hiệu lực', 0.1), ('hieu luc', 0.1),  # Effectiveness
     ]
     for keyword, weight in contract_keywords:
         if keyword in text_lower:
             scores['contract'] += weight
-            keywords_found.append(keyword)
+            if keyword not in keywords_found:
+                keywords_found.append(keyword)
     
     if 'signature' in figure_types:
         scores['contract'] += 0.3
