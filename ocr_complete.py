@@ -16,6 +16,8 @@ from reportlab.platypus import SimpleDocTemplate, Paragraph, Spacer, PageBreak, 
 from reportlab.lib.styles import getSampleStyleSheet, ParagraphStyle
 from reportlab.lib.enums import TA_CENTER, TA_JUSTIFY
 from reportlab.pdfgen import canvas
+from reportlab.pdfbase import pdfmetrics
+from reportlab.pdfbase.ttfonts import TTFont
 from pypdf import PdfReader, PdfWriter
 from ebooklib import epub
 import time
@@ -275,9 +277,31 @@ def create_pdf_from_images(image_paths, output_path):
         return None
 
 def create_pdf_from_ocr(results, output_path):
-    """Create PDF from OCR text content"""
+    """Create PDF from OCR text content with Vietnamese font support"""
     try:
-        print(f"\n[*] Creating PDF from OCR text...")
+        print(f"\n[*] Tạo PDF từ văn bản OCR...")
+        
+        # Register Vietnamese-compatible font (DejaVu Sans has Vietnamese)
+        # Try to use system fonts that support Vietnamese
+        try:
+            # Windows fonts
+            pdfmetrics.registerFont(TTFont('VietnameseFont', 'C:/Windows/Fonts/arial.ttf'))
+            pdfmetrics.registerFont(TTFont('VietnameseBold', 'C:/Windows/Fonts/arialbd.ttf'))
+            font_name = 'VietnameseFont'
+            font_bold = 'VietnameseBold'
+            print("    [✓] Đã load font Arial (hỗ trợ tiếng Việt)")
+        except:
+            try:
+                # Fallback to DejaVu (included in reportlab)
+                from reportlab.pdfbase.cidfonts import UnicodeCIDFont
+                pdfmetrics.registerFont(UnicodeCIDFont('STSong-Light'))
+                font_name = 'STSong-Light'
+                font_bold = 'STSong-Light'
+                print("    [!] Dùng font dự phòng (có thể không đẹp)")
+            except:
+                font_name = 'Helvetica'
+                font_bold = 'Helvetica-Bold'
+                print("    [⚠] Cảnh báo: Không tìm thấy font tiếng Việt, dấu có thể bị lỗi")
         
         # Create PDF document
         doc = SimpleDocTemplate(
@@ -289,11 +313,12 @@ def create_pdf_from_ocr(results, output_path):
             bottomMargin=inch
         )
         
-        # Styles
+        # Styles with Vietnamese font
         styles = getSampleStyleSheet()
         title_style = ParagraphStyle(
             'CustomTitle',
             parent=styles['Heading1'],
+            fontName=font_bold,
             fontSize=24,
             textColor='#2C3E50',
             spaceAfter=30,
@@ -302,6 +327,7 @@ def create_pdf_from_ocr(results, output_path):
         heading_style = ParagraphStyle(
             'CustomHeading',
             parent=styles['Heading2'],
+            fontName=font_bold,
             fontSize=16,
             textColor='#34495E',
             spaceAfter=12,
@@ -310,6 +336,7 @@ def create_pdf_from_ocr(results, output_path):
         normal_style = ParagraphStyle(
             'CustomNormal',
             parent=styles['Normal'],
+            fontName=font_name,
             fontSize=11,
             leading=16,
             alignment=TA_JUSTIFY,
@@ -318,6 +345,7 @@ def create_pdf_from_ocr(results, output_path):
         meta_style = ParagraphStyle(
             'Meta',
             parent=styles['Normal'],
+            fontName=font_name,
             fontSize=9,
             textColor='#7F8C8D',
             alignment=TA_CENTER,
