@@ -281,7 +281,7 @@ Docling TableFormer:
 
 ---
 
-## �� NOUGAT (Meta AI) Implementation
+## NOUGAT (Meta AI) Implementation
 
 ### Architecture (Vision Transformer):
 ```python
